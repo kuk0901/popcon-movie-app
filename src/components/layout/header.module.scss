@@ -1,0 +1,44 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(40, 44, 52, 0.9);
+  color: #e9e5e5;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 60px;
+  border-bottom: 1px solid;
+  padding: 10px;
+
+  .logo {
+    .link_home {
+      color: #e9e5e5;
+      font-style: italic;
+      transition: 0.2s;
+      padding: 5px;
+
+      &:hover {
+        color: #e9e5e5;
+        box-shadow: 3px 3px 4px #e9e5e5;
+      }
+    }
+  }
+
+  .link_container {
+    display: flex;
+    gap: 10px;
+    transition: 0.2s;
+
+    .link_auth {
+      color: #e9e5e5;
+      padding: 5px;
+
+      &:hover {
+        background-color: #e9e5e5;
+        color: #282c34;
+        border-radius: 4px;
+      }
+    }
+  }
+}
