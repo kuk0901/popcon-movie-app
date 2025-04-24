@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 프로젝트 개요
 
-## Getting Started
+Popcon Movie App은 영화 검색 및 정보 제공 웹사이트입니다. 영화진흥위원회 오픈 API를 활용하여 국내 영화 정보를 제공하며, 사용자 계정 관리 및 검색어 저장 기능을 통해 개인화된 경험을 제공하는 것을 목표로 합니다. 본 프로젝트는 개인 포트폴리오 용도로 개발되었습니다.
 
-First, run the development server:
+## 목차
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1.  [개발 목표](#개발-목표)
+2.  [기술 스택](#기술-스택)
+3.  [주요 기능](#주요-기능)
+4.  [데이터베이스 사용 목적](#데이터베이스-사용-목적)
+5.  [License](#license)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 개발 목표
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Next.js를 활용한 현대적인 사용자 인터페이스 개발과 API 개발 경험
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- MongoDB를 활용한 데이터 모델링 및 데이터 관리 경험
 
-## Learn More
+- 오픈 API 연동 및 데이터 활용 능력 향상
 
-To learn more about Next.js, take a look at the following resources:
+- 사용자 인증 및 데이터 저장 기능 구현 능력 습득
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- 개인 포트폴리오를 통해 웹 개발 역량 어필
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+<br />
 
-## Deploy on Vercel
+## 기술 스택
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- 클라이언트 / 서버: Next.js
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- 데이터베이스: MongoDB (docker)
+
+- API: 영화진흥위원회 오픈 API, KMDb - 한국영상자료원
+
+- 회원 인증: NextAuth.js
+
+<br />
+
+## 주요 기능
+
+- 영화 검색: 제목, 배우 등으로 국내 영화 검색 기능 제공
+
+- 영화 상세 정보: 영화 포스터, 줄거리, 개봉일, 감독/출연진 정보 등 제공
+
+- 회원 가입 및 로그인: 사용자 계정 생성 및 관리 기능
+
+- 검색어 저장:
+
+  - 최근 검색어: 사용자가 검색한 최근 검색어 목록 저장 및 제공
+
+  - 자주 찾는 검색어: 사용자의 검색 패턴 분석을 통한 자주 찾는 검색어 저장 및 제공 (추후 활용)
+
+- 검색어 기반 영화 추천
+
+- 사용자 찜 목록
+
+<br />
+
+## 데이터베이스 사용 목적
+
+- 회원 정보 관리: 사용자 계정 정보 (아이디, 비밀번호 등) 저장 및 관리
+
+- 검색 기록 저장: 사용자의 검색어 데이터를 저장하여 최근 검색어 및 자주 찾는 검색어 기능 지원
+
+<br />
+
+## License
+
+MIT
+
+---
