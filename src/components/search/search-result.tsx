@@ -1,5 +1,5 @@
 import { MovieListItem, MovieListResult } from "@/types/movie";
-import MovieItem from "../movie/MovieItem";
+import MovieItem from "../movie/movie-item";
 import style from "./search-result.module.scss";
 
 interface ApiResponse {
@@ -7,7 +7,6 @@ interface ApiResponse {
 }
 
 const SearchResult = async ({ movie }: Readonly<{ movie: string }>) => {
-  console.log("movie: ", movie);
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_MOVIE_LIST_API_SERVER}?key=${process.env.NEXT_PUBLIC_MOVIE_API_KEY}&curPage=1&itemPerPage=10&movieNm=${movie}`,
     {

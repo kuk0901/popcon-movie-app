@@ -1,22 +1,32 @@
 .list_item {
-  width: 400px;
-  border: 1px solid;
-  padding: 10px;
+  width: 420px;
+  border: 1px solid rgb(220, 220, 220);
+  padding: 7px;
   border-radius: 4px;
   margin: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
+  cursor: pointer;
 
-  .title {
+  &:hover {
+    background-color: rgb(245, 245, 245);
   }
 
-  .open_date {
-  }
+  a {
+    display: flex;
+    gap: 5px;
 
-  .genre {
-  }
+    img {
+      width: 80px;
+      border-radius: 3px;
+    }
 
-  .director {
+    .info {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .title {
+      font-weight: 600;
+    }
   }
 }

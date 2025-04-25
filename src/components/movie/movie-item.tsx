@@ -1,8 +1,10 @@
 import { MovieListItem } from "@/types/movie";
 import style from "./movie-item.module.scss";
+import Image from "next/image";
+import Link from "next/link";
 
 const MovieItem = (props: { movie: MovieListItem }) => {
-  const { movieNm, openDt, genreAlt, directors } = props.movie;
+  const { movieCd, movieNm, openDt, genreAlt, directors } = props.movie;
   const formattedOpenDt = openDt
     ? `${openDt.slice(0, 4)}년 ${openDt.slice(4, 6)}월 ${openDt.slice(6, 8)}일`
     : "정보 없음";
@@ -19,10 +21,20 @@ const MovieItem = (props: { movie: MovieListItem }) => {
 
   return (
     <li className={style.list_item}>
-      <div className={style.title}>제목: {movieNm}</div>
-      <div className={style.open_date}>개봉일: {formattedOpenDt}</div>
-      <div className={style.genre}>장르: {formattedGenreAlt}</div>
-      <div className={style.director}>감독: {formattedDirectors}</div>
+      <Link href={`/movie/${movieCd}`}>
+        <Image
+          src={"/samplePoster.png"}
+          width={80}
+          height={105}
+          alt="sample-poster"
+        />
+        <div className={style.info}>
+          <div className={style.title}>{movieNm}</div>
+          <div className={style.open_date}>개봉일: {formattedOpenDt}</div>
+          <div className={style.genre}>장르: {formattedGenreAlt}</div>
+          <div className={style.director}>감독: {formattedDirectors}</div>
+        </div>
+      </Link>
     </li>
   );
 };
