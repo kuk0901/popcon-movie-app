@@ -1,7 +1,7 @@
 import SearchResult from "@/components/search/search-result";
 import { Suspense } from "react";
 
-const page = async ({
+const Page = async ({
   searchParams
 }: Readonly<{
   searchParams: Promise<{ movie?: string }>;
@@ -15,4 +15,4 @@ const page = async ({
   );
 };
 
-export default page;
+export default Page;
