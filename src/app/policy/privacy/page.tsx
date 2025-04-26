@@ -7,7 +7,7 @@ const privacyPolicy = privacyPolicyRaw as PolicyData[];
 
 export default function Page() {
   return (
-    <>
+    <section className={style.policy_section}>
       <h2 className={style.title}>개인정보 처리방침</h2>
 
       <ol className={style.policy_list}>
@@ -15,6 +15,6 @@ export default function Page() {
           <PolicyItem key={item.id} {...item} />
         ))}
       </ol>
-    </>
+    </section>
   );
 }
