@@ -7,7 +7,7 @@ const termOfService = termOfServiceRaw as PolicyData[];
 
 export default function Page() {
   return (
-    <>
+    <section className={style.policy_section}>
       <h2 className={style.title}>서비스 이용 약관</h2>
 
       <ol className={style.policy_list}>
@@ -15,6 +15,6 @@ export default function Page() {
           <PolicyItem key={item.id} {...item} />
         ))}
       </ol>
-    </>
+    </section>
   );
 }
