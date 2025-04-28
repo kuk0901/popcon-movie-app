@@ -1,14 +1,13 @@
-import { MovieListItem, MovieListResult } from "@/types/movie";
-import MovieItem from "../movie/movie-item";
-import style from "./search-result.module.scss";
+import { MovieAndPosterDetail, MovieAndPosterResult } from "@/types/movie";
 
-interface ApiResponse {
-  movieListResult?: MovieListResult;
-}
+import style from "./search-result.module.scss";
+import MoviePosterSimpleItem from "../movie/movie-poster-simple-item";
 
 const SearchResult = async ({ movie }: Readonly<{ movie: string }>) => {
+  console.log("movie", movie);
+
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_MOVIE_LIST_API_SERVER}?key=${process.env.NEXT_PUBLIC_MOVIE_API_KEY}&curPage=1&itemPerPage=10&movieNm=${movie}`,
+    `${process.env.NEXT_PUBLIC_MOVIE_KMDB_API_SERVER}&title=${movie}&ServiceKey=${process.env.NEXT_PUBLIC_MOVIE_KMDB_API_KEY}`,
     {
       cache: "force-cache"
     }
@@ -19,19 +18,19 @@ const SearchResult = async ({ movie }: Readonly<{ movie: string }>) => {
     return <div>검색 결과를 불러오는 데 실패했습니다.</div>;
   }
 
-  const data: ApiResponse = await res.json();
-  const movieListResult = data.movieListResult;
+  const data: MovieAndPosterResult = await res.json();
+  const { Data } = data;
+  const movieList: MovieAndPosterDetail[] = Data[0].Result;
+  console.log("movieList", movieList);
 
-  if (!movieListResult?.movieList || movieListResult.movieList.length === 0) {
+  if (movieList.length === 0) {
     return <div>검색 결과가 없습니다.</div>;
   }
 
-  const movieList: MovieListItem[] = movieListResult.movieList;
-
   return (
     <ul className={style.list}>
-      {movieList.map((movie: MovieListItem) => (
-        <MovieItem key={movie.movieCd + movie.movieNm} movie={movie} />
+      {movieList.map((movie: MovieAndPosterDetail) => (
+        <MoviePosterSimpleItem key={movie.DOCID} movie={movie} />
       ))}
     </ul>
   );

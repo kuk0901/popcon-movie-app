@@ -5,8 +5,8 @@ const Footer = () => {
   return (
     <footer className={style.footer}>
       <ul className={style.footer_info}>
+        <li className={style.footer_info_item}>Powered by </li>
         <li className={style.footer_info_item}>
-          Powered by{" "}
           <Link
             href="http://www.kobis.or.kr"
             target="_blank"
@@ -16,6 +16,18 @@ const Footer = () => {
           </Link>
         </li>
         <li className={style.footer_info_item}>
+          <Link
+            href="https://www.kmdb.or.kr/info/api/apiDetail/6"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            KMDb 오픈 API
+          </Link>
+        </li>
+      </ul>
+
+      <ul className={style.footer_my_info}>
+        <li className={style.footer_my_item}>
           © {new Date().getFullYear()} My Portfolio. All rights reserved.
         </li>
       </ul>

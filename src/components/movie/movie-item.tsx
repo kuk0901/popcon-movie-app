@@ -2,12 +2,11 @@ import { MovieListItem } from "@/types/movie";
 import style from "./movie-item.module.scss";
 import Image from "next/image";
 import Link from "next/link";
+import { movieReleaseDateToKorDate } from "@/utils/format/stringToDate";
 
 const MovieItem = (props: { movie: MovieListItem }) => {
   const { movieCd, movieNm, openDt, genreAlt, directors } = props.movie;
-  const formattedOpenDt = openDt
-    ? `${openDt.slice(0, 4)}년 ${openDt.slice(4, 6)}월 ${openDt.slice(6, 8)}일`
-    : "정보 없음";
+  const formattedOpenDt = movieReleaseDateToKorDate(openDt);
   const formattedGenreAlt = genreAlt
     ? genreAlt.replace(/,/g, ", ")
     : "정보 없음";
