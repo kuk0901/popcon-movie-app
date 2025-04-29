@@ -1,7 +1,7 @@
 import { MovieAndPosterDetail, MovieAndPosterResult } from "@/types/movie";
 
 import style from "./search-result.module.scss";
-import MoviePosterSimpleItem from "../movie/movie-poster-simple-item";
+import MoviePosterSimpleItem from "../movie/movie-item";
 
 const SearchResult = async ({ movie }: Readonly<{ movie: string }>) => {
   console.log("movie", movie);
@@ -20,10 +20,10 @@ const SearchResult = async ({ movie }: Readonly<{ movie: string }>) => {
 
   const data: MovieAndPosterResult = await res.json();
   const { Data } = data;
-  const movieList: MovieAndPosterDetail[] = Data[0].Result;
-  console.log("movieList", movieList);
 
-  if (movieList.length === 0) {
+  const movieList: MovieAndPosterDetail[] = Data[0].Result;
+
+  if (!movieList || movieList.length === 0) {
     return <div>검색 결과가 없습니다.</div>;
   }
 

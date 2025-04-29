@@ -1,5 +1,5 @@
 import { MovieAndPosterDetail, MovieAndPosterResult } from "@/types/movie";
-import MoviePosterSimpleItem from "./movie-poster-simple-item";
+import MovieItem from "./movie-item";
 import style from "./reco-upcoming-movies.module.scss";
 
 export default async function UpcomingMovies() {
@@ -29,7 +29,7 @@ export default async function UpcomingMovies() {
       <h2 className={style.movies_title}>개봉 예정 영화</h2>
       <ul className={style.movies_list}>
         {movieList.map((movie: MovieAndPosterDetail) => (
-          <MoviePosterSimpleItem key={movie.DOCID} movie={movie} />
+          <MovieItem key={movie.DOCID} movie={movie} />
         ))}
       </ul>
     </section>

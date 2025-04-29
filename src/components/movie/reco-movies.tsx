@@ -1,5 +1,5 @@
 import { MovieAndPosterDetail, MovieAndPosterResult } from "@/types/movie";
-import MoviePosterSimpleItem from "./movie-poster-simple-item";
+import MovieItem from "./movie-item";
 import style from "./reco-upcoming-movies.module.scss";
 
 // 특정 유명 영화 감독들 리스트를 미리 세팅해두고 -> // 그 감독의 영화들 중 랜덤으로 10개를 추천하는 컴포넌트
@@ -24,7 +24,7 @@ export default async function RecoMovies() {
       <h2 className={style.movies_title}>추천 영화</h2>
       <ul className={style.movies_list}>
         {movieList.map((movie: MovieAndPosterDetail) => (
-          <MoviePosterSimpleItem key={movie.DOCID} movie={movie} />
+          <MovieItem key={movie.DOCID} movie={movie} />
         ))}
       </ul>
     </section>
