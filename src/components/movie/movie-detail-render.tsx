@@ -3,6 +3,7 @@ import Image from "next/image";
 import style from "./movie-detail-render.module.scss";
 import { movieReleaseDateToKorDate } from "@/utils/format/stringToDate";
 import { RatingType } from "./movie-item";
+import { getActorNamesToJoinStr } from "@/utils/getActorNamesToJoinStr";
 
 interface PlotType {
   plotLang: string;
@@ -23,10 +24,12 @@ export default function MovieDetailRender({
     (p: PlotType) => p.plotLang === "한국어"
   );
   const koPlot = plot[0];
+  const actorNames: string = getActorNamesToJoinStr(movie.actors?.actor);
 
   return (
     <section className={style.movie_section}>
       <div className={style.movie_info}>
+        {/* FIXME: 이미지 부분을 컴포넌트로 분리 */}
         <div className={style.movie_poster}>
           {posterUrl[0] !== "" ? (
             <Image
@@ -60,6 +63,12 @@ export default function MovieDetailRender({
             </li>
           ) : null}
           <li className={style.movie_info_item}>개봉일: {releaseDate}</li>
+          <li className={style.movie_info_item}>
+            {/* 배우:{" "} */}
+            배우: {actorNames}
+          </li>
+          {/* FIXME: 장르 */}
+          {/* FIXME: 수상 내역 */}
         </ul>
       </div>
 

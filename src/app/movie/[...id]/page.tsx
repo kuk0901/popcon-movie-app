@@ -37,8 +37,6 @@ export default async function Page({
 }: Readonly<{ params: Promise<{ id: string[] }> }>) {
   const { id } = await params;
   const [movieId, movieSeq] = id;
-  console.log(movieId);
-  console.log(movieSeq);
 
   return <MovieDetail movieId={movieId} movieSeq={movieSeq} />;
 }
