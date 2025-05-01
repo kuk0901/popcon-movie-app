@@ -6,7 +6,8 @@ const Header = () => {
     <header className={style.header}>
       <div className={style.logo}>
         <Link href={"/"} className={style.link_home}>
-          Popcon Movie
+          <span className={style.logo_img}></span>
+          <span className={style.logo_text}>Popcon Movie</span>
         </Link>
       </div>
       <div className={style.link_container}>

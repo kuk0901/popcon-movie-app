@@ -1,32 +1,34 @@
-.list_item {
-  width: 420px;
-  border: 1px solid rgb(220, 220, 220);
-  padding: 7px;
+.movies_item {
+  width: 250px;
+  padding: 10px;
+  height: 450px;
+  // border: 1px solid #ccc;
   border-radius: 4px;
-  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   cursor: pointer;
+  transition: 0.2s;
 
   &:hover {
-    background-color: rgb(245, 245, 245);
+    background-color: #ccc;
+    color: #000;
   }
 
   a {
-    display: flex;
-    gap: 5px;
+    color: inherit;
 
-    img {
-      width: 80px;
-      border-radius: 3px;
-    }
-
-    .info {
+    .movie_info_list {
       display: flex;
       flex-direction: column;
-      gap: 3px;
-    }
+      gap: 5px;
 
-    .title {
-      font-weight: 600;
+      .movie_info_item {
+        &.movie_info_title {
+          font-weight: 700;
+          word-break: keep-all;
+        }
+      }
     }
   }
 }

@@ -1,0 +1,19 @@
+.policy_nav {
+  margin: 20px;
+
+  .policy_link_list {
+    display: flex;
+
+    .policy_link {
+      padding: 15px;
+      border: 1px solid #ccc;
+      margin-right: -1px;
+
+      &:has(.active) {
+        border-color: #007bff;
+
+        z-index: 10;
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+.movie_info_list {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 17px;
+  padding: 15px;
+
+  .movie_info_item {
+    &.movie_info_title {
+      font-size: 20px;
+      font-weight: 700;
+      word-break: keep-all;
+    }
+
+    &:has(.award_title) {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+  }
+}

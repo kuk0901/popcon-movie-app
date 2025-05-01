@@ -7,11 +7,13 @@
   position: fixed;
   top: 0;
   width: 100vw;
-  border-bottom: 1px solid;
   padding: 10px;
+  z-index: 999;
 
   .logo {
     .link_home {
+      display: flex;
+      align-items: center;
       color: #e9e5e5;
       font-style: italic;
       transition: 0.2s;
@@ -20,6 +22,21 @@
       &:hover {
         color: #e9e5e5;
         box-shadow: 3px 3px 4px #e9e5e5;
+      }
+
+      .logo_img {
+        display: inline-block;
+        width: 50px;
+        height: 30px;
+        background-image: url("/logo.svg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        border-radius: 50%;
+      }
+
+      .logo_text {
+        transform: translateX(-7px);
       }
     }
   }
