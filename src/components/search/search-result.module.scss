@@ -1,8 +1,8 @@
 .list {
   display: flex;
-  margin: 30px auto;
+  margin: 40px;
   flex-wrap: wrap;
-  justify-content: center;
   align-items: center;
-  gap: 1rem;
+  gap: 20px;
+  overflow-y: auto;
 }

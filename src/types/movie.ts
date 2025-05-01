@@ -74,3 +74,35 @@ export interface MovieDetailResult {
   movieInfo: MovieDetail;
   source: string;
 }
+
+export interface MovieAndPosterDetail {
+  rowValue: string; // 검색결과 리스트 내 일련 번호
+  docid: string; // pk
+  movieId: string; // 등록 ID
+  title: string; // 영화명
+  directorNm: string; // 감독명
+  actorNm: string; // 배우명
+  nation: string; // 제작국가
+  company: string; // 제작사
+  prodYear: string; // 제작년도
+  plot: string; // 줄거리
+  runtime: string; // 대표상영시간
+  rating: string; // 대표관람등급
+  genre: string;
+  kmdbUrl: string; // 링크 url
+  releaseDate: string; // 개봉일
+  posterUrl: string; // 포스터 url
+  [key: string]: any;
+}
+
+export interface MovieAndPosterResult {
+  Data: MovieAndPosterDetailResult[];
+  [key: string]: any;
+}
+
+export interface MovieAndPosterDetailResult {
+  collName: string;
+  count: number;
+  Result: MovieAndPosterDetail[];
+  totalCount: number;
+}
