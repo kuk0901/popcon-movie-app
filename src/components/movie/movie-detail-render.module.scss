@@ -1,40 +1,28 @@
 .movie_section {
-  width: 100%;
   padding: 20px;
+  border: 1px solid;
   border-radius: 4px;
+  margin: 10px;
 
-  // FIXME: scss 수정 필요
   .movie_info {
     display: flex;
     gap: 20px;
     margin-bottom: 20px;
     flex-wrap: wrap;
+  }
 
-    .movie_poster,
-    .movie_info_list {
+  .movie_plot {
+    border: 1px solid;
+    border-radius: 4px;
+    padding: 20px;
+
+    .movie_plot_title {
+      font-weight: 600;
+      margin-bottom: 20px;
     }
 
-    .movie_poster {
-      .movie_poster_img {
-        display: inline-block;
-        margin: auto;
-        width: 100%;
-        height: 500px;
-      }
-    }
-
-    .movie_info_list {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-      font-size: 17px;
-
-      .movie_info_item {
-        &.movie_info_title {
-          font-weight: 700;
-          word-break: keep-all;
-        }
-      }
+    .movie_plot_content {
+      line-height: 1.7;
     }
   }
 }

@@ -1,9 +1,11 @@
 import { MovieAndPosterDetail } from "@/types/movie";
-import Image from "next/image";
 import style from "./movie-detail-render.module.scss";
 import { movieReleaseDateToKorDate } from "@/utils/format/stringToDate";
 import { RatingType } from "./movie-item";
 import { getActorNamesToJoinStr } from "@/utils/getActorNamesToJoinStr";
+import MoviePoster from "./movie-poster";
+import MovieInfoList from "./movie-info-list";
+import BackRouteButton from "../button/back-route-button";
 
 interface PlotType {
   plotLang: string;
@@ -13,66 +15,60 @@ interface PlotType {
 export default function MovieDetailRender({
   movie
 }: Readonly<{ movie: MovieAndPosterDetail }>) {
-  console.log("movie", movie);
-
   const rating: RatingType = movie?.ratings.rating[0];
-  const releaseDate = movieReleaseDateToKorDate(rating.releaseDate);
+  const releaseDate: string = movieReleaseDateToKorDate(rating.releaseDate);
   const posterUrl: string[] = movie?.posters.split("|");
-  const movieTitle = movie?.title?.replace(/!HS|!HE/g, "");
-  const ratingGrade = rating.ratingGrade.split("||")[0];
+  const movieTitle: string = movie?.title?.replace(/!HS|!HE/g, "");
+  const ratingGrade: string = rating.ratingGrade.split("||")[0];
   const plot: PlotType[] = movie?.plots.plot.filter(
     (p: PlotType) => p.plotLang === "한국어"
   );
   const koPlot = plot[0];
   const actorNames: string = getActorNamesToJoinStr(movie.actors?.actor);
+  const director: string = movie.directors?.director[0].directorNm;
+  const genres: string = movie?.genre.replaceAll(",", ", ");
+  const companys: string = movie?.company.replaceAll(",", ", ");
+  const nation: string = movie?.nation.replaceAll(",", ", ");
+  const awards: string[] = movie.Awards1.split("|").map((award: string) => {
+    const trimmedAward = award.trim();
+    if (trimmedAward.endsWith(" -")) {
+      return trimmedAward.slice(0, -3).trim();
+    }
+    return trimmedAward;
+  });
 
   return (
     <section className={style.movie_section}>
       <div className={style.movie_info}>
-        {/* FIXME: 이미지 부분을 컴포넌트로 분리 */}
         <div className={style.movie_poster}>
-          {posterUrl[0] !== "" ? (
-            <Image
-              src={posterUrl[0]}
-              alt={`${movie.title}의 포스터 이미지`}
-              width={400}
-              height={500}
-              className={style.movie_poster_img}
-            />
-          ) : (
-            <Image
-              src="/samplePoster.png"
-              alt={`${movie.title}의 포스터 이미지`}
-              width={400}
-              height={500}
-              className={style.movie_poster_img}
-            />
-          )}
+          <MoviePoster
+            posterUrl={posterUrl[0]}
+            movieTitle={movieTitle}
+            width={350}
+            height={420}
+          />
         </div>
 
-        <ul className={style.movie_info_list}>
-          <li className={`${style.movie_info_item} ${style.movie_info_title}`}>
-            {movieTitle}
-          </li>
-          {rating.ratingGrade !== "" ? (
-            <li className={style.movie_info_item}>등급: {ratingGrade}</li>
-          ) : null}
-          {movie.runtime !== "" ? (
-            <li className={style.movie_info_item}>
-              상영시간: {movie.runtime}분
-            </li>
-          ) : null}
-          <li className={style.movie_info_item}>개봉일: {releaseDate}</li>
-          <li className={style.movie_info_item}>
-            {/* 배우:{" "} */}
-            배우: {actorNames}
-          </li>
-          {/* FIXME: 장르 */}
-          {/* FIXME: 수상 내역 */}
-        </ul>
+        <MovieInfoList
+          movieTitle={movieTitle}
+          ratingGrade={ratingGrade}
+          runtime={movie.runtime}
+          releaseDate={releaseDate}
+          actorNames={actorNames}
+          director={director}
+          genres={genres}
+          companys={companys}
+          nation={nation}
+          awards={awards}
+        />
       </div>
 
-      <div className={style.movie_plot}>{koPlot.plotText}</div>
+      <div className={style.movie_plot}>
+        <div className={style.movie_plot_title}>줄거리</div>
+        <div className={style.movie_plot_content}>{koPlot.plotText}</div>
+      </div>
+
+      <BackRouteButton />
     </section>
   );
 }

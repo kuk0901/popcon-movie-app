@@ -1,8 +1,8 @@
 import { MovieAndPosterDetail } from "@/types/movie";
 import { movieReleaseDateToKorDate } from "@/utils/format/stringToDate";
-import Image from "next/image";
 import style from "./movie-item.module.scss";
 import Link from "next/link";
+import MoviePoster from "./movie-poster";
 
 export interface RatingType {
   ratingDate: string;
@@ -23,23 +23,7 @@ export default function MovieItem({
     <li className={style.movies_item}>
       <Link href={`/movie/${movie.movieId}/${movie.movieSeq}`}>
         <div className={style.movie_poster}>
-          {posterUrl[0] !== "" ? (
-            <Image
-              src={posterUrl[0]}
-              alt={`${movie.title}의 포스터 이미지`}
-              width={230}
-              height={300}
-              className={style.movie_poster_img}
-            />
-          ) : (
-            <Image
-              src="/samplePoster.png"
-              alt={`${movie.title}의 포스터 이미지`}
-              width={230}
-              height={300}
-              className={style.movie_poster_img}
-            />
-          )}
+          <MoviePoster posterUrl={posterUrl[0]} movieTitle={movieTitle} />
         </div>
 
         <ul className={style.movie_info_list}>

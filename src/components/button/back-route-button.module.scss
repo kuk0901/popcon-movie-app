@@ -1,0 +1,20 @@
+.btn_container {
+  margin: 30px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .btn {
+    padding: 10px;
+    background-color: rgb(26, 120, 214);
+    border: 1px solid rgb(26, 120, 214);
+    color: #fff;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: 0.2s;
+
+    &:hover {
+      background-color: rgb(37, 147, 255);
+    }
+  }
+}
