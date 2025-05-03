@@ -1,0 +1,12 @@
+.user_info {
+  width: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .user_icon {
+    background-color: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+}

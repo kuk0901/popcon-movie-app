@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "@/styles/main.scss";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
+import SessionClientProvider from "@/components/session-client-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,7 +19,7 @@ export const metadata: Metadata = {
   title: "Popcon Movie"
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children
 }: Readonly<{
   children: React.ReactNode;
@@ -26,11 +27,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <div className="wrapper">
-          <Header />
-          <main>{children}</main>
-          <Footer />
-        </div>
+        <SessionClientProvider>
+          <div className="wrapper">
+            <Header />
+            <main>{children}</main>
+            <Footer />
+          </div>
+        </SessionClientProvider>
       </body>
     </html>
   );

@@ -32,7 +32,7 @@ Popcon Movie App은 영화 검색 및 정보 제공 웹사이트입니다. 영�
 
 - Open API: 영화진흥위원회 오픈 API, KMDb - 한국영상자료원
 
-- 회원 인증: NextAuth.js
+- 회원 인증: NextAuth
 
 <br />
 

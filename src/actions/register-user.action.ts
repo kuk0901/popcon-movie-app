@@ -6,7 +6,6 @@ import { UserRegisterSchema } from "@/schemas/userRegister.schema";
 import { ActionResponse } from "@/types/res/ActionResponse";
 import * as bcrypt from "bcryptjs";
 
-
 export async function registerUserAction(
   _: ActionResponse | undefined,
   formData: FormData
@@ -41,7 +40,8 @@ export async function registerUserAction(
     // 사용자 생성
     const user = await User.create({
       ...parsed.data,
-      pwd: hashedPassword
+      pwd: hashedPassword,
+      image: "/user.svg"
     });
 
     return user
