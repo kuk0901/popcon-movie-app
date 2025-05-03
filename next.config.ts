@@ -7,7 +7,32 @@ const nextConfig: NextConfig = {
     includePaths: [path.join(__dirname, "src/styles")]
   },
   images: {
-    domains: ["file.koreafilm.or.kr", "img.kmdb.or.kr"]
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "file.koreafilm.or.kr",
+        port: "",
+        pathname: "/**"
+      },
+      {
+        protocol: "http",
+        hostname: "file.koreafilm.or.kr",
+        port: "",
+        pathname: "/**"
+      },
+      {
+        protocol: "https",
+        hostname: "img.kmdb.or.kr",
+        port: "",
+        pathname: "/**"
+      },
+      {
+        protocol: "http",
+        hostname: "img.kmdb.or.kr",
+        port: "",
+        pathname: "/**"
+      }
+    ]
   }
 };
 
