@@ -1,23 +1,23 @@
-import mongoose from "mongoose";
+import { IFavorite } from "@/types/models/Favorite";
+import mongoose, { Model } from "mongoose";
 
-// FIXME: 개수 제한을 둘 것 -> User처럼 수정 필요
 const FavoriteSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
     required: true,
-    unique: true
+    index: true
   },
-  movieList: [
-    {
-      movieId: { type: String, required: true }, // pk
-      movieTitle: { type: String, required: true },
-      posterURL: { type: String },
-      addedAt: { type: Date, default: Date.now }
-    }
-  ],
-  createdAt: { type: Date, default: Date.now }
+  movieId: { type: String, required: true, trim: true, index: true },
+  movieTitle: { type: String, required: true, trim: true, index: true },
+  posterURL: { type: String },
+  addedAt: { type: Date, default: Date.now }
 });
 
-export default mongoose.models.Favorite ||
-  mongoose.model("Favorite", FavoriteSchema);
+FavoriteSchema.index({ user: 1, movieId: 1 }, { unique: true });
+
+const Favorite: Model<IFavorite> =
+  mongoose.models && mongoose.models.Favorite
+    ? mongoose.models.Favorite
+    : mongoose.model<IFavorite>("Favorite", FavoriteSchema);
+
+export default Favorite;

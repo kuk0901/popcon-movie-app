@@ -2,7 +2,7 @@
 
 import connectDB from "@/lib/mongoose";
 import User from "@/models/User";
-import { UserRegisterSchema } from "@/schemas/userRegister.schema";
+import { UserRegisterSchema } from "@/schemas/UserRegister.schema";
 import { ActionResponse } from "@/types/res/ActionResponse";
 import * as bcrypt from "bcryptjs";
 
@@ -48,7 +48,7 @@ export async function registerUserAction(
       ? { status: true, message: "회원가입 되었습니다." }
       : { status: false, message: "DB 저장 실패" };
   } catch (err) {
-    console.error("회원가입 에러:", err);
+    console.error("회원가입 에러: ", err);
 
     if (err instanceof Error) {
       return { status: false, message: err.message };

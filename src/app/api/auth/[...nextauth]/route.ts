@@ -9,6 +9,7 @@ import * as bcrypt from "bcryptjs";
 import { UserLoginSchema } from "@/schemas/UserLogin.schema";
 
 export const authOptions: NextAuthOptions = {
+  secret: process.env.NEXTAUTH_SECRET,
   adapter: MongoDBAdapter(clientPromise),
   providers: [
     GoogleProvider({
