@@ -1,3 +1,5 @@
+"use server";
+
 import connectDB from "@/lib/mongoose";
 import Favorite from "@/models/Favorite";
 import { FavoriteDeleteSchema } from "@/schemas/FavoriteDelete.schema";

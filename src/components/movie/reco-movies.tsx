@@ -29,13 +29,15 @@ export default async function RecoMovies() {
   const movieList: MovieAndPosterDetail[] = Data[0].Result;
 
   return (
-    <section className={style.movies}>
-      <h2 className={style.movies_title}>추천 영화: {randomDirector.name} 감독</h2>
+    <article className={style.movies}>
+      <h2 className={style.movies_title}>
+        추천 영화: {randomDirector.name} 감독
+      </h2>
       <ul className={style.movies_list}>
         {movieList.map((movie: MovieAndPosterDetail) => (
           <MovieItem key={movie.DOCID} movie={movie} />
         ))}
       </ul>
-    </section>
+    </article>
   );
 }

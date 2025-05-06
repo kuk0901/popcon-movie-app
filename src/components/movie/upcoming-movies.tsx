@@ -25,13 +25,13 @@ export default async function UpcomingMovies() {
   const movieList: MovieAndPosterDetail[] = Data[0].Result;
 
   return (
-    <section className={style.movies}>
+    <article className={style.movies}>
       <h2 className={style.movies_title}>개봉 예정 영화</h2>
       <ul className={style.movies_list}>
         {movieList.map((movie: MovieAndPosterDetail) => (
           <MovieItem key={movie.DOCID} movie={movie} />
         ))}
       </ul>
-    </section>
+    </article>
   );
 }

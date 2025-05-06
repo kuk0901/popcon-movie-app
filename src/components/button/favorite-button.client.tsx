@@ -3,29 +3,34 @@
 import { deleteFavoriteAction } from "@/actions/delete-favorite.action";
 import { registerFavoriteAction } from "@/actions/register-favorite.action";
 import { FavoriteRegisterInput } from "@/types/favoriteRegisterInput";
-import { useTransition } from "react";
+import { useState, useTransition } from "react";
 
 export default function FavoriteButtonClient({
   favoriteRegisterInput,
-  isFavorite
+  isFavorite: initialIsFavorite
 }: Readonly<{
   favoriteRegisterInput: FavoriteRegisterInput;
   isFavorite: boolean;
 }>) {
+  const [isFavorite, setIsFavorite] = useState(initialIsFavorite);
   const [isPending, startTransition] = useTransition();
+
+  console.log(isFavorite);
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
+    setIsFavorite((prev) => !prev); // Optimistic UI
+
     startTransition(() => {
-      if (isFavorite) {
-        deleteFavoriteAction({
-          user: favoriteRegisterInput.user,
-          movieId: favoriteRegisterInput.movieId
-        });
-      } else {
-        registerFavoriteAction(favoriteRegisterInput);
-      }
+      const action = isFavorite
+        ? deleteFavoriteAction({
+            user: favoriteRegisterInput.user,
+            movieId: favoriteRegisterInput.movieId
+          })
+        : registerFavoriteAction(favoriteRegisterInput);
+
+      action.catch(() => setIsFavorite(initialIsFavorite)); // 실패 시 최초 값으로 롤백
     });
   };
 

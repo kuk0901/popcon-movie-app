@@ -1,22 +1,26 @@
-.container {
-  display: flex;
-  gap: 10px;
-  max-width: 500px;
-  margin: 20px auto;
+.article {
+  margin: auto;
 
-  .movie {
-    flex: 1;
-    padding: 15px;
-    border-radius: 5px;
-    border: 1px solid rgb(220, 220, 220);
-  }
+  .container {
+    display: flex;
+    gap: 10px;
+    max-width: 500px;
+    margin: 20px auto 0;
 
-  button {
-    width: 80px;
-    border-radius: 5px;
-    border: none;
-    background-color: rgb(37, 147, 255);
-    color: white;
-    cursor: pointer;
+    .movie {
+      flex: 1;
+      padding: 15px;
+      border-radius: 5px;
+      border: 1px solid rgb(220, 220, 220);
+    }
+
+    button {
+      width: 80px;
+      border-radius: 5px;
+      border: none;
+      background-color: rgb(37, 147, 255);
+      color: white;
+      cursor: pointer;
+    }
   }
 }

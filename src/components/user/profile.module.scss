@@ -1,0 +1,23 @@
+.article {
+  padding: 10px;
+  border: 1px solid;
+}
+
+.form {
+  padding: 10px;
+  border: 1px solid;
+
+  .container {
+    padding: 10px;
+    border: 1px solid;
+    display: flex;
+    gap: 10px;
+    margin: 10px;
+
+    .label_container {
+    }
+
+    .input_container {
+    }
+  }
+}
