@@ -7,7 +7,6 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { signOut } from "next-auth/react";
 
-// FIXME: signout + profile 이동
 export default function UserInfo({ user }: Readonly<{ user: UserInfoType }>) {
   const [showMenu, setShowMenu] = useState(false);
   const sectionRef = useRef<HTMLElement | null>(null);
