@@ -6,6 +6,7 @@ import { getActorNamesToJoinStr } from "@/utils/getActorNamesToJoinStr";
 import MoviePoster from "./movie-poster";
 import MovieInfoList from "./movie-info-list";
 import BackRouteButton from "../button/back-route-button";
+import MovieFavoriteButton from "../button/movie-favorite-button.server";
 
 interface PlotType {
   plotLang: string;
@@ -49,18 +50,26 @@ export default function MovieDetailRender({
           />
         </div>
 
-        <MovieInfoList
-          movieTitle={movieTitle}
-          ratingGrade={ratingGrade}
-          runtime={movie.runtime}
-          releaseDate={releaseDate}
-          actorNames={actorNames}
-          director={director}
-          genres={genres}
-          companys={companys}
-          nation={nation}
-          awards={awards}
-        />
+        <div className={style.movie_info_list}>
+          <MovieInfoList
+            movieTitle={movieTitle}
+            ratingGrade={ratingGrade}
+            runtime={movie.runtime}
+            releaseDate={releaseDate}
+            actorNames={actorNames}
+            director={director}
+            genres={genres}
+            companys={companys}
+            nation={nation}
+            awards={awards}
+          />
+
+          <MovieFavoriteButton
+            movieId={movie.DOCID}
+            posterURL={posterUrl[0]}
+            movieTitle={movieTitle}
+          />
+        </div>
       </div>
 
       <div className={style.movie_plot}>

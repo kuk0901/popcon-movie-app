@@ -1,12 +1,10 @@
-.register_form {
+.signin_form {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 20px;
   padding-top: 20px;
-  width: 500px;
-  height: 600px;
 
   .container {
     display: flex;

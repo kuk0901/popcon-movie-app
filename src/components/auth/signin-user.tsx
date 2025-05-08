@@ -1,31 +1,39 @@
 "use client";
 
-import { registerUserAction } from "@/actions/register-user.action";
-import { useActionState, useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { signIn } from "next-auth/react";
 import style from "./auth-user.module.scss";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
-export default function RegisterUser() {
-  const [state, formAction, isPending] = useActionState(registerUserAction, {
-    status: true
-  });
+export default function SigninUser() {
   const [showPwd, setShowPwd] = useState(false);
   const router = useRouter();
 
-  useEffect(() => {
-    if (state?.status && state?.message) {
-      alert("회원가입이 완료되었습니다!");
-      router.replace("/auth/signin");
-    } else if (state && !state.status) {
-      alert(state.message);
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.currentTarget);
+    const email = formData.get("email")?.toString();
+    const pwd = formData.get("pwd")?.toString();
+
+    const res = await signIn("credentials", {
+      email,
+      pwd,
+      redirect: false
+    });
+
+    if (res?.status == 200) {
+      router.replace("/");
     }
-  }, [state, router]);
+
+    // 에러 메시지 띄움
+  };
 
   return (
     <div className={style.form_container}>
-      <h2 className={style.title}>Popcon Movie 회원가입</h2>
+      <h2 className={style.title}>Popcon Movie 로그인</h2>
 
-      <form action={formAction} className={style.form}>
+      <form onSubmit={handleSubmit} className={style.form}>
         <div className={style.container}>
           <div className={style.label_container}>
             <label htmlFor="email">email</label>
@@ -70,27 +78,9 @@ export default function RegisterUser() {
           </div>
         </div>
 
-        <div className={style.container}>
-          <div className={style.label_container}>
-            <label htmlFor="userName">your name</label>
-          </div>
-          <div className={style.input_container}>
-            <input
-              id="userName"
-              name="userName"
-              type="text"
-              placeholder="홍길동"
-              minLength={2}
-              maxLength={20}
-              title="이름은 2~20글자 사이이어야 합니다."
-              required
-            />
-          </div>
-        </div>
-
         <div className="btn_container">
-          <button disabled={isPending} type="submit" className="btn">
-            회원가입
+          <button type="submit" className="btn">
+            로그인
           </button>
         </div>
       </form>

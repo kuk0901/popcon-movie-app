@@ -16,5 +16,14 @@
     &:hover {
       background-color: rgb(37, 147, 255);
     }
+
+    &.btn--favorite {
+      background-color: rgb(201, 33, 131);
+      border: 1px solid rgb(201, 33, 131);
+
+      &:hover {
+        background-color: rgb(235, 52, 159);
+      }
+    }
   }
 }

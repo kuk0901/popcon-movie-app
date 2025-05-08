@@ -3,16 +3,13 @@ import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { MongoDBAdapter } from "@auth/mongodb-adapter";
 import clientPromise from "@/lib/mongodb";
-import { z } from "zod";
+import connectDB from "@/lib/mongoose";
+import User from "@/models/User";
+import * as bcrypt from "bcryptjs";
+import { UserLoginSchema } from "@/schemas/UserLogin.schema";
 
-// 여기서만 사용될 거라 분리 안 해도 될 듯
-const LoginSchema = z.object({
-  email: z.string().email(),
-  password: z.string().min(8)
-});
-
-// FIXME: DB 저장 코드 작성해야 함, signIn() 사용
 export const authOptions: NextAuthOptions = {
+  secret: process.env.NEXTAUTH_SECRET,
   adapter: MongoDBAdapter(clientPromise),
   providers: [
     GoogleProvider({
@@ -22,22 +19,45 @@ export const authOptions: NextAuthOptions = {
     CredentialsProvider({
       name: "Credentials",
       credentials: {
-        email: { label: "Email", type: "email" },
-        password: { label: "Password", type: "password" }
+        email: { label: "email", type: "email" },
+        pwd: { label: "password", type: "password" }
       },
       async authorize(credentials) {
-        // 입력값 검증
-        const parsed = LoginSchema.safeParse(credentials);
+        const parsed = UserLoginSchema.safeParse(credentials);
         if (!parsed.success) return null;
 
-        // DB에서 유저 찾고, 비밀번호 비교 등 로그인 로직 작성
-        // const user = await User.findOne({ email: parsed.data.email });
-        // if (!user) return null;
-        // const isMatch = await bcrypt.compare(parsed.data.password, user.pwd);
-        // if (!isMatch) return null;
-        // return user;
+        try {
+          await connectDB();
 
-        return null;
+          // 유저 확인
+          const user = await User.findOne({ email: parsed.data.email });
+          if (!user) return null;
+
+          // 비밀번호 확인
+          if (user.pwd) {
+            const isMatch = await bcrypt.compare(parsed.data.pwd, user.pwd);
+
+            if (!isMatch) return null;
+          }
+
+          // 데이터 확인용
+          // const result = {
+          //   id: user._id.toString(),
+          //   email: user.email,
+          //   name: user.userName,
+          //   image: typeof user.image === "string" ? user.image : undefined
+          // };
+
+          return {
+            id: user._id.toString(),
+            email: user.email,
+            name: user.userName,
+            image: typeof user.image === "string" ? user.image : undefined
+          };
+        } catch (err) {
+          console.error(err);
+          return null;
+        }
       }
     })
   ],
@@ -46,6 +66,24 @@ export const authOptions: NextAuthOptions = {
   },
   pages: {
     signIn: "/auth/signin"
+  },
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+        token.image = typeof user.image === "string" ? user.image : undefined;
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      if (session.user && token.sub) {
+        session.user.id = token.sub;
+      }
+      if (session.user && typeof token.image === "string") {
+        session.user.image = token.image;
+      }
+      return session;
+    }
   }
 };
 
