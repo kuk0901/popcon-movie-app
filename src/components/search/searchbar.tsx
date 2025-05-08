@@ -1,20 +1,18 @@
 "use client";
 
 import { useSearchParams, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import style from "./search.module.scss";
 import SearchHistoryList from "./search-history-list";
 import { useSearchStore } from "@/stores/useSearchStore";
 
-// FIXME: 동작 확인
 const Searchbar = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [search, setSearch] = useState("");
   const { addSearchTerm } = useSearchStore();
-
-  // searchTerms
   const [showSearchTerms, setShowSearchTerms] = useState(false);
+  const articleRef = useRef<HTMLElement | null>(null);
 
   const movie = searchParams.get("movie");
 
@@ -41,8 +39,24 @@ const Searchbar = () => {
     }
   };
 
+  useEffect(() => {
+    if (!showSearchTerms) return;
+
+    function handleClickOutside(e: MouseEvent) {
+      if (
+        articleRef.current &&
+        !articleRef.current.contains(e.target as Node)
+      ) {
+        setShowSearchTerms(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [showSearchTerms]);
+
   return (
-    <article className={style.article}>
+    <article className={style.article} ref={articleRef}>
       <div className={style.container}>
         <input
           name="movie"
@@ -50,19 +64,20 @@ const Searchbar = () => {
           onChange={onChangeSearch}
           onKeyDown={onKeyDown}
           placeholder="영화 제목을 입력하세요"
-          className={style.movie}
+          className={`${style.movie} ${
+            showSearchTerms ? style.border_none : style.border
+          }`}
           onClick={() => setShowSearchTerms(true)}
           autoComplete="off"
         />
-        <button onClick={onSubmit}>검색</button>
-      </div>
 
-      {showSearchTerms ? (
-        <SearchHistoryList
-          onSelect={(term) => setSearch(term)}
-          setShowSearchTerms={setShowSearchTerms}
-        />
-      ) : null}
+        {showSearchTerms ? (
+          <SearchHistoryList
+            onSelect={(term) => setSearch(term)}
+            setShowSearchTerms={setShowSearchTerms}
+          />
+        ) : null}
+      </div>
     </article>
   );
 };

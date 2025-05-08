@@ -4,7 +4,6 @@ import { useSearchStore } from "@/stores/useSearchStore";
 import style from "./search-history-list.module.scss";
 import { useRouter } from "next/navigation";
 
-// FIXME: 클릭 후 안 보여야 함
 export default function SearchHistoryList({
   onSelect,
   setShowSearchTerms
@@ -61,8 +60,6 @@ export default function SearchHistoryList({
           </li>
         ))}
       </ul>
-
-      <div className={style.hidden}></div>
     </div>
   );
 }
