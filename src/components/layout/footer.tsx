@@ -8,7 +8,7 @@ const Footer = () => {
         <li className={style.footer_info_item}>Powered by </li>
         <li className={style.footer_info_item}>
           <Link
-            href="http://www.kobis.or.kr"
+            href="https://www.kobis.or.kr/kobisopenapi/homepg/main/main.do"
             target="_blank"
             rel="noopener noreferrer"
           >
