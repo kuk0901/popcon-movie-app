@@ -7,8 +7,9 @@ export default async function UpcomingMovies() {
   const year = dateObj.getFullYear();
   const month = String(dateObj.getMonth() + 1).padStart(2, "0");
   const date = String(dateObj.getDate()).padStart(2, "0");
-  const today = `${year}${month}${date}`; // "20240428" 형태
+  const today = `${year}${month}${date}`;
 
+  // FIXME: 날짜 최신순으로 정렬!
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_MOVIE_KMDB_API_SERVER}&nation=대한민국&releaseDts=${today}&listCount=10&ServiceKey=${process.env.NEXT_PUBLIC_MOVIE_KMDB_API_KEY}`,
     {
