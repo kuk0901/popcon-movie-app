@@ -9,7 +9,6 @@ export default async function UpcomingMovies() {
   const date = String(dateObj.getDate()).padStart(2, "0");
   const today = `${year}${month}${date}`;
 
-  // FIXME: 날짜 최신순으로 정렬!
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_MOVIE_KMDB_API_SERVER}&nation=대한민국&releaseDts=${today}&listCount=10&ServiceKey=${process.env.NEXT_PUBLIC_MOVIE_KMDB_API_KEY}`,
     {
@@ -23,7 +22,9 @@ export default async function UpcomingMovies() {
 
   const data: MovieAndPosterResult = await res.json();
   const { Data } = data;
-  const movieList: MovieAndPosterDetail[] = Data[0].Result;
+  const movieList: MovieAndPosterDetail[] = Data[0].Result?.toSorted(
+    (a, b) => b.repRlsDate - a.repRlsDate
+  );
 
   return (
     <article className={style.movies}>
