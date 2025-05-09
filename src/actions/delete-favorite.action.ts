@@ -8,12 +8,12 @@ import { Types } from "mongoose";
 
 export async function deleteFavoriteAction({
   user,
-  movieId
+  docId
 }: {
   user: string;
-  movieId: string;
+  docId: string;
 }): Promise<ActionResponse> {
-  const parsed = FavoriteDeleteSchema.safeParse({ user, movieId });
+  const parsed = FavoriteDeleteSchema.safeParse({ user, docId });
 
   if (!parsed.success) {
     return {
@@ -27,7 +27,7 @@ export async function deleteFavoriteAction({
 
     const deleteFavorite = await Favorite.deleteOne({
       user: new Types.ObjectId(parsed.data.user),
-      movieId: parsed.data.movieId
+      docId: parsed.data.docId
     });
 
     return deleteFavorite.deletedCount === 1

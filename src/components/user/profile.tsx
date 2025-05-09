@@ -6,7 +6,6 @@ import ProfileUpdate from "./profile-update";
 import ProfileRead from "./profile-read";
 import style from "./profile.module.scss";
 
-// FIXME: 동작 확인
 export default async function Profile({
   id
 }: Readonly<{ id: string | undefined }>) {
@@ -33,6 +32,10 @@ export default async function Profile({
 
   return (
     <article className={style.article}>
+      <h1 className={style.title}>
+        &quot;{checkedUser.userName}&quot;님의 마이페이지
+      </h1>
+
       {checkedUser.provider === "credentials" ? (
         <ProfileUpdate user={safeUser} />
       ) : (

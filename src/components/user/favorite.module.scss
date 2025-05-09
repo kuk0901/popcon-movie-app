@@ -1,4 +1,45 @@
-.section {
-  .article {
+.article {
+  padding: 10px;
+
+  .title {
+    padding: 10px;
+    font-size: 24px;
+    background-color: lightgray;
+    color: #000;
+    margin: 0 10px;
+  }
+
+  .favorite_section {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    .none_favorite {
+      margin: 20px 10px 10px;
+      font-size: 22px;
+      text-align: center;
+      width: 100%;
+    }
+
+    .movie_article {
+      border: 1px solid;
+      border-radius: 5px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: center;
+      margin: 10px;
+
+      .movie_page_link {
+        cursor: pointer;
+
+        .movie_title {
+          padding: 10px;
+          text-align: center;
+          color: #fff;
+        }
+      }
+    }
   }
 }

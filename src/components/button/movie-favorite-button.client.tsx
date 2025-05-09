@@ -15,8 +15,6 @@ export default function FavoriteButtonClient({
   const [isFavorite, setIsFavorite] = useState(initialIsFavorite);
   const [isPending, startTransition] = useTransition();
 
-  console.log(isFavorite);
-
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
@@ -26,7 +24,7 @@ export default function FavoriteButtonClient({
       const action = isFavorite
         ? deleteFavoriteAction({
             user: favoriteRegisterInput.user,
-            movieId: favoriteRegisterInput.movieId
+            docId: favoriteRegisterInput.docId
           })
         : registerFavoriteAction(favoriteRegisterInput);
 

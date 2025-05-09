@@ -5,6 +5,7 @@ import { useActionState, useEffect, useState } from "react";
 import { updateUserAction } from "@/actions/update-user.action";
 import { useRouter } from "next/navigation";
 import { UserProfile } from "@/types/userProfile";
+import { signOut } from "next-auth/react";
 
 export default function ProfileUpdate({
   user
@@ -21,15 +22,29 @@ export default function ProfileUpdate({
     if (state?.status && state?.message) {
       console.log("state success: ", state);
       alert("회원 정보가 저장되었습니다. 다시 로그인 해주세요.");
+      signOut();
       router.replace("/auth/signin");
     } else if (state && !state.status) {
       console.log("state failed: ", state);
-      alert(state.message);
+      alert(state.message); // FIXME: 알림 메시지로 변경
     }
   }, [state, router]);
 
+  const handleActionFrom = async (formData: FormData) => {
+    if (
+      formData.get("email") === user.email &&
+      formData.get("userName") === user.userName &&
+      !formData.get("pwd")
+    ) {
+      console.log("변경된 내용이 없습니다."); // FIXME: 알림 메시지로 변경
+      return;
+    }
+
+    formAction(formData);
+  };
+
   return (
-    <form action={formAction} className={style.form}>
+    <form action={handleActionFrom} className={style.form}>
       <div className={style.container}>
         <div className={style.label_container}>
           <label htmlFor="email">email</label>
