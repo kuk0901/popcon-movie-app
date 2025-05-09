@@ -4,8 +4,6 @@ import style from "./search-result.module.scss";
 import MoviePosterSimpleItem from "../movie/movie-item";
 
 const SearchResult = async ({ movie }: Readonly<{ movie: string }>) => {
-  console.log("movie", movie);
-
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_MOVIE_KMDB_API_SERVER}&title=${movie}&ServiceKey=${process.env.NEXT_PUBLIC_MOVIE_KMDB_API_KEY}`,
     {

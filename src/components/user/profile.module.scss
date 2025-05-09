@@ -1,0 +1,52 @@
+.article {
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid;
+
+  .title {
+    padding: 10px;
+    font-size: 24px;
+    background-color: lightgray;
+    color: #000;
+    margin: 0 10px;
+  }
+
+  .form {
+    padding: 10px;
+
+    .container {
+      padding: 10px;
+      margin: 35px 0;
+      border: 1px solid;
+      border-left: none;
+      border-right: none;
+      display: flex;
+      gap: 10px;
+
+      &:first-child {
+        margin-top: 10px;
+      }
+
+      .label_container {
+        width: 90px;
+        padding: 10px 0;
+        text-align: center;
+        font-weight: 700;
+      }
+
+      .input_container {
+        width: 300px;
+        padding: 10px;
+        background-color: #fff;
+        border-radius: 2px;
+
+        input {
+          background-color: #fff;
+          border: none;
+          width: 90%;
+          outline: none;
+        }
+      }
+    }
+  }
+}

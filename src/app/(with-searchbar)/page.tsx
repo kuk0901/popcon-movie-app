@@ -1,15 +1,12 @@
-// 추천 영화 api 호출
-
 import RecoMovies from "@/components/movie/reco-movies";
 import UpcomingMovies from "@/components/movie/upcoming-movies";
-
-// 최근 검색 영화 api 호출
+import style from "./page.module.scss";
 
 export default function Home() {
   return (
-    <div>
+    <section className={style.section}>
       <RecoMovies />
       <UpcomingMovies />
-    </div>
+    </section>
   );
 }

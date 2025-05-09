@@ -1,22 +1,37 @@
-.container {
-  display: flex;
-  gap: 10px;
+.article {
+  margin: 20px auto 0;
   max-width: 500px;
-  margin: 20px auto;
+  border-radius: 5px;
+  border: 1px solid #fff;
+  background-color: #fff;
 
-  .movie {
-    flex: 1;
-    padding: 15px;
-    border-radius: 5px;
-    border: 1px solid rgb(220, 220, 220);
+  .container {
+    position: relative;
+
+    .movie {
+      display: inline-block;
+      width: 100%;
+      height: 46px;
+      padding: 15px;
+      border-radius: 5px;
+      border: 1px solid #fff;
+      outline: none;
+      font-size: 16px;
+
+      &.border_none {
+        border-bottom: none;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+
+      &.border {
+        border-bottom: 1px solid #fff;
+      }
+    }
   }
 
-  button {
-    width: 80px;
-    border-radius: 5px;
-    border: none;
-    background-color: rgb(37, 147, 255);
-    color: white;
-    cursor: pointer;
+  &:has(.border_none) {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
   }
 }
