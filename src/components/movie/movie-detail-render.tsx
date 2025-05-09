@@ -65,9 +65,11 @@ export default function MovieDetailRender({
           />
 
           <MovieFavoriteButton
-            movieId={movie.DOCID}
+            docId={movie.DOCID}
+            movieId={movie.movieId}
             posterURL={posterUrl[0]}
             movieTitle={movieTitle}
+            movieSeq={movie.movieSeq}
           />
         </div>
       </div>

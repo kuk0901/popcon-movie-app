@@ -25,5 +25,20 @@
         background-color: rgb(235, 52, 159);
       }
     }
+
+    &.btn__remove {
+      background-color: rgb(186, 35, 53);
+      border: 1px solid rgb(186, 35, 53);
+
+      &:hover {
+        background-color: rgb(225, 60, 80);
+      }
+    }
+  }
+}
+
+.profile_favorite {
+  .btn_container {
+    margin: 10px;
   }
 }

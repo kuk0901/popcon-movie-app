@@ -14,7 +14,7 @@ export default async function Page() {
   return (
     <section>
       <Profile id={session.user.id} />
-      <FavoriteList />
+      <FavoriteList user={session.user.id} />
     </section>
   );
 }

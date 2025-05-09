@@ -9,11 +9,11 @@ import { ActionResponse } from "@/types/res/ActionResponse";
 import * as bcrypt from "bcryptjs";
 import { getServerSession } from "next-auth";
 
-// FIXME: 동작 확인
 export async function updateUserAction(
   _: ActionResponse | undefined,
   formData: FormData
 ): Promise<ActionResponse> {
+  console.log("서버 액션 에러 확인 중 1");
   const session = await getServerSession(authOptions);
   const userId = session?.user?.id;
   if (!userId) throw new Error("Not authenticated");
@@ -22,11 +22,18 @@ export async function updateUserAction(
 
   // FormData 파싱
   const email = formData.get("email")?.toString();
-  const pwd = formData.get("pwd")?.toString();
+  const pwdRaw = formData.get("pwd");
+  const pwd = pwdRaw === "" ? undefined : pwdRaw?.toString();
   const userName = formData.get("userName")?.toString();
 
   // Zod 검증
-  const parsed = UserUpdateSchema.safeParse({ email, pwd, userName });
+  const parsed = UserUpdateSchema.safeParse({
+    id: userId,
+    email,
+    pwd,
+    userName
+  });
+
   if (!parsed.success) {
     return {
       status: false,
@@ -47,16 +54,15 @@ export async function updateUserAction(
       return { status: false, message: "이미 가입된 이메일입니다." };
     }
 
-    console.log("exists: ", exists);
-
     // 업데이트할 필드 준비
     const updateFields: Record<string, string> = {
       email: parsed.data.email,
       userName: parsed.data.userName
     };
 
-    // 비밀번호가 입력된 경우에만 해싱해서 포함
+    // 비밀번호 유무에 따라 다르게 동작해야 함, 없는 경우 기존 비밀번호 사용
     if (parsed.data.pwd) {
+      // 사용자 정보 업데이트
       const salt = await bcrypt.genSalt();
       updateFields.pwd = await bcrypt.hash(parsed.data.pwd, salt);
     }
@@ -67,8 +73,6 @@ export async function updateUserAction(
       { $set: updateFields },
       { new: true }
     );
-
-    console.log("user: ", user);
 
     return user
       ? { status: true, message: "회원 정보가 저장되었습니다." }

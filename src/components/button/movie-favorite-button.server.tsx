@@ -1,18 +1,22 @@
 import connectDB from "@/lib/mongoose";
 import Favorite from "@/models/Favorite";
 import { getServerSession } from "next-auth";
-import FavoriteButtonClient from "./favorite-button.client";
+import FavoriteButtonClient from "./movie-favorite-button.client";
 import { FavoriteRegisterInput } from "@/types/favoriteRegisterInput";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 export default async function MovieFavoriteButton({
+  docId,
   movieId,
   movieTitle,
-  posterURL
+  posterURL,
+  movieSeq
 }: Readonly<{
+  docId: string;
   movieId: string;
   movieTitle: string;
   posterURL?: string;
+  movieSeq: string;
 }>) {
   const session = await getServerSession(authOptions);
 
@@ -25,15 +29,17 @@ export default async function MovieFavoriteButton({
 
   const favorite = await Favorite.findOne({
     user: session.user.id as string,
-    movieId
+    docId
   });
 
   const isFavorite = !!favorite;
   const favoriteRegisterInput: FavoriteRegisterInput = {
     user: session.user.id as string,
+    docId,
     movieId,
     movieTitle,
-    posterURL
+    posterURL,
+    movieSeq
   };
 
   return (

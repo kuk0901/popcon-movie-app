@@ -7,13 +7,15 @@ const FavoriteSchema = new mongoose.Schema({
     required: true,
     index: true
   },
-  movieId: { type: String, required: true, trim: true, index: true },
+  docId: { type: String, required: true, trim: true, index: true },
+  movieId: { type: String, required: true, trim: true },
   movieTitle: { type: String, required: true, trim: true, index: true },
   posterURL: { type: String },
-  addedAt: { type: Date, default: Date.now }
+  addedAt: { type: Date, default: Date.now },
+  movieSeq: { type: String, required: true, trim: true }
 });
 
-FavoriteSchema.index({ user: 1, movieId: 1 }, { unique: true });
+FavoriteSchema.index({ user: 1, docId: 1 }, { unique: true });
 
 const Favorite: Model<IFavorite> =
   mongoose.models && mongoose.models.Favorite
