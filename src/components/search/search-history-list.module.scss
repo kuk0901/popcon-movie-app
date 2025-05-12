@@ -1,3 +1,5 @@
+@use "../../styles/abstracts/mixins";
+
 .container {
   position: absolute;
   left: -1px;
@@ -9,6 +11,18 @@
   border-bottom-right-radius: 5px;
   overflow: hidden;
   border-top-color: rgb(179, 168, 168);
+
+  @include mixins.sm-mode {
+    max-width: 400px;
+  }
+
+  @include mixins.xs-mode {
+    max-width: 300px;
+  }
+
+  @include mixins.xxs-mode {
+    max-width: 200px;
+  }
 
   .search_list {
     margin: auto;
@@ -34,15 +48,34 @@
         border-bottom-right-radius: 5px;
       }
 
+      @include mixins.sm-mode {
+        max-width: 400px;
+      }
+
+      @include mixins.xs-mode {
+        max-width: 300px;
+      }
+
+      @include mixins.xxs-mode {
+        max-width: 200px;
+      }
+
       .search_content {
         background: none;
         border: none;
         font-size: 16px;
-
         cursor: pointer;
         flex: 1;
         text-align: left;
         transition: 0.2s;
+
+        @include mixins.xs-mode {
+          font-size: 15px;
+        }
+
+        @include mixins.xxs-mode {
+          font-size: 14px;
+        }
       }
 
       .search_remove_button {
@@ -60,6 +93,14 @@
           color: #000;
           background-color: #c7c4c4;
           border-radius: 50%;
+        }
+
+        @include mixins.xs-mode {
+          font-size: 15px;
+        }
+
+        @include mixins.xxs-mode {
+          font-size: 14px;
         }
       }
     }

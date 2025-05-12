@@ -1,9 +1,23 @@
+@use "../../styles/abstracts/mixins";
+
 .article {
   margin: 20px auto 0;
   max-width: 500px;
   border-radius: 5px;
   border: 1px solid #fff;
   background-color: #fff;
+
+  @include mixins.sm-mode {
+    max-width: 400px;
+  }
+
+  @include mixins.xs-mode {
+    max-width: 300px;
+  }
+
+  @include mixins.xxs-mode {
+    max-width: 200px;
+  }
 
   .container {
     position: relative;
@@ -26,6 +40,14 @@
 
       &.border {
         border-bottom: 1px solid #fff;
+      }
+
+      @include mixins.xs-mode {
+        font-size: 15px;
+      }
+
+      @include mixins.xxs-mode {
+        font-size: 14px;
       }
     }
   }

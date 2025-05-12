@@ -1,13 +1,24 @@
+@use "../../styles/abstracts/mixins";
+
 .footer {
   background-color: rgba(40, 44, 52, 0.9);
   color: #e9e5e5;
-  padding: 10px;
+  padding: 10px 10px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 
+  @include mixins.md-mode {
+    flex-wrap: wrap;
+    gap: 30px;
+  }
+
   a {
     color: #e9e5e5;
+
+    &:hover {
+      color: rgb(114, 177, 241);
+    }
   }
 
   .footer_info,
