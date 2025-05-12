@@ -25,7 +25,7 @@ export default function ProfileRead({ user }: Readonly<{ user: UserProfile }>) {
         </div>
       </div>
 
-      <div className={style.container}>
+      <div className={`${style.container} ${style.container_read}`}>
         <div className={style.label_container}>
           <label htmlFor="userName">your name</label>
         </div>
