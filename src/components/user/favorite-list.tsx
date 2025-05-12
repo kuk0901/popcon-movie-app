@@ -12,7 +12,7 @@ export default async function FavoriteList({
 
   return (
     <article className={style.article}>
-      <h1 className={style.title}>찜 목록</h1>
+      <h1 className={style.title}>❤️ 찜 목록</h1>
 
       <section className={style.favorite_section}>
         {favoriteList.length == 0 ? (

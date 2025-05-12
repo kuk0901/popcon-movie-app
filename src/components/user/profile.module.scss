@@ -1,18 +1,18 @@
 .article {
   margin: 10px;
   padding: 10px;
-  border: 1px solid;
 
   .title {
     padding: 10px;
     font-size: 24px;
     background-color: lightgray;
     color: #000;
-    margin: 0 10px;
+    margin-bottom: 20px;
   }
 
   .form {
     padding: 10px;
+    border: 1px solid;
 
     .container {
       padding: 10px;
@@ -25,6 +25,10 @@
 
       &:first-child {
         margin-top: 10px;
+      }
+
+      &.container_read {
+        margin-bottom: 10px;
       }
 
       .label_container {
