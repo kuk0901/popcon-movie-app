@@ -14,7 +14,6 @@ interface PlotType {
   plotText: string;
 }
 
-// FIXME:
 export default function MovieDetailRender({
   movie
 }: Readonly<{ movie: MovieAndPosterDetail }>) {
