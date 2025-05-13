@@ -7,6 +7,7 @@ import MoviePoster from "./movie-poster";
 import MovieInfoList from "./movie-info-list";
 import BackRouteButton from "../button/back-route-button";
 import MovieFavoriteButton from "../button/movie-favorite-button.server";
+import MovieAwards from "./movie-awards";
 
 interface PlotType {
   plotLang: string;
@@ -30,23 +31,26 @@ export default function MovieDetailRender({
   const genres: string = movie?.genre.replaceAll(",", ", ");
   const companys: string = movie?.company.replaceAll(",", ", ");
   const nation: string = movie?.nation.replaceAll(",", ", ");
-  const awards: string[] = movie.Awards1.split("|").map((award: string) => {
-    const trimmedAward = award.trim();
-    if (trimmedAward.endsWith(" -")) {
-      return trimmedAward.slice(0, -3).trim();
-    }
-    return trimmedAward;
-  });
+  const awards: string[] = movie.Awards1.split("|")
+    .map((award: string) => {
+      const trimmedAward = award.trim();
+      if (trimmedAward.endsWith(" -")) {
+        return trimmedAward.slice(0, -3).trim();
+      }
+      return trimmedAward;
+    })
+    .slice(0, 7);
 
   return (
     <section className={style.movie_section}>
-      <div className={style.movie_info}>
+      <article className={style.movie_info}>
         <div className={style.movie_poster}>
           <MoviePoster
             posterUrl={posterUrl[0]}
             movieTitle={movieTitle}
             width={350}
             height={420}
+            className="detail_poster"
           />
         </div>
 
@@ -61,23 +65,26 @@ export default function MovieDetailRender({
             genres={genres}
             companys={companys}
             nation={nation}
-            awards={awards}
           />
 
-          <MovieFavoriteButton
-            docId={movie.DOCID}
-            movieId={movie.movieId}
-            posterURL={posterUrl[0]}
-            movieTitle={movieTitle}
-            movieSeq={movie.movieSeq}
-          />
+          <div>
+            <MovieFavoriteButton
+              docId={movie.DOCID}
+              movieId={movie.movieId}
+              posterURL={posterUrl[0]}
+              movieTitle={movieTitle}
+              movieSeq={movie.movieSeq}
+            />
+          </div>
         </div>
-      </div>
+      </article>
 
-      <div className={style.movie_plot}>
+      <MovieAwards awards={awards} />
+
+      <article className={style.movie_plot}>
         <div className={style.movie_plot_title}>줄거리</div>
         <div className={style.movie_plot_content}>{koPlot.plotText}</div>
-      </div>
+      </article>
 
       <BackRouteButton />
     </section>

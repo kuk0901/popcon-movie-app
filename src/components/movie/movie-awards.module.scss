@@ -1,0 +1,31 @@
+@use "../../styles/abstracts/mixins";
+
+.movie_award {
+  margin: 10px 0 30px;
+
+  .award_title {
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  .award_list {
+    @include mixins.flex-row-gap(space-between, center, 10px);
+    @include mixins.flex-wrap;
+
+    .award_item {
+      margin-left: 10px;
+      position: relative;
+
+      &::before {
+        content: "";
+        position: absolute;
+        width: 5px;
+        height: 5px;
+        background-color: #fff;
+        border-radius: 50%;
+        top: 5px;
+        left: -10px;
+      }
+    }
+  }
+}

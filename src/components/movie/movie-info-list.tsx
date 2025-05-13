@@ -10,7 +10,6 @@ interface MovieInfoListProps {
   genres: string;
   companys: string;
   nation: string;
-  awards: string[];
 }
 
 export default function MovieInfoList({
@@ -22,8 +21,7 @@ export default function MovieInfoList({
   director,
   genres,
   companys,
-  nation,
-  awards
+  nation
 }: Readonly<MovieInfoListProps>) {
   return (
     <ul className={style.movie_info_list}>
@@ -42,16 +40,6 @@ export default function MovieInfoList({
       <li className={style.movie_info_item}>장르: {genres}</li>
       <li className={style.movie_info_item}>제작: {companys}</li>
       <li className={style.movie_info_item}>국가: {nation}</li>
-      {awards.length > 1 && (
-        <li className={style.movie_info_item}>
-          <div className={style.award_title}>수상 내역</div>
-          {awards.map((award, i) => (
-            <div key={i} className={style.award_content}>
-              {award}
-            </div>
-          ))}
-        </li>
-      )}
     </ul>
   );
 }

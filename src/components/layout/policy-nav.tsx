@@ -7,28 +7,32 @@ import Link from "next/link";
 export default function PolicyNav() {
   return (
     <nav className={style.policy_nav}>
-      <div className={style.policy_link_list}>
-        <div className={style.policy_link}>
+      <ul className={style.policy_link_list}>
+        <li className={style.policy_link_item}>
           <Link
             href="/policy/service"
             className={
-              usePolicyLinkActive("/policy/service") ? style.active : ""
+              usePolicyLinkActive("/policy/service")
+                ? `${style.policy_link} ${style.active}`
+                : style.policy_link
             }
           >
             이용약관
           </Link>
-        </div>
-        <div className={style.policy_link}>
+        </li>
+        <li className={style.policy_link_item}>
           <Link
             href="/policy/privacy"
             className={
-              usePolicyLinkActive("/policy/privacy") ? style.active : ""
+              usePolicyLinkActive("/policy/privacy")
+                ? `${style.policy_link} ${style.active}`
+                : style.policy_link
             }
           >
             개인정보처리방침
           </Link>
-        </div>
-      </div>
+        </li>
+      </ul>
     </nav>
   );
 }

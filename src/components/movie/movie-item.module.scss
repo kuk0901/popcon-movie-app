@@ -1,12 +1,11 @@
+@use "../../styles/abstracts/mixins";
+
 .movies_item {
+  @include mixins.flex-column-gap($gap: 10px);
   width: 250px;
   padding: 10px;
   height: 450px;
-  // border: 1px solid #ccc;
   border-radius: 4px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
   cursor: pointer;
   transition: 0.2s;
 
@@ -19,14 +18,12 @@
     color: inherit;
 
     .movie_info_list {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
+      @include mixins.flex-column-gap($gap: 5px);
 
       .movie_info_item {
         &.movie_info_title {
           font-weight: 700;
-          word-break: keep-all;
+          @include mixins.wordBreakKeepAll;
         }
       }
     }

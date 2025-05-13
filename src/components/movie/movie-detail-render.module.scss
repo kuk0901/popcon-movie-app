@@ -1,3 +1,5 @@
+@use "../../styles/abstracts/mixins";
+
 .movie_section {
   padding: 20px;
   border: 1px solid;
@@ -5,16 +7,24 @@
   margin: 10px;
 
   .movie_info {
-    display: flex;
-    gap: 20px;
+    @include mixins.flex-row-gap($gap: 10px);
+    @include mixins.flex-wrap;
     margin-bottom: 20px;
-    flex-wrap: wrap;
+
+    @include mixins.md-mode {
+      flex-wrap: nowrap;
+      flex-direction: column;
+    }
 
     .movie_info_list {
       flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      @include mixins.flex-column($justify: space-between);
+    }
+
+    .movie_poster {
+      @include mixins.md-mode {
+        margin: auto;
+      }
     }
   }
 
@@ -30,6 +40,14 @@
 
     .movie_plot_content {
       line-height: 1.7;
+
+      @include mixins.xs-mode {
+        font-size: 15px;
+      }
+
+      @include mixins.xxs-mode {
+        font-size: 14px;
+      }
     }
   }
 }

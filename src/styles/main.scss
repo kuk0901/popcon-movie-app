@@ -4,8 +4,7 @@
 @use "components/button";
 
 .wrapper {
-  display: flex;
-  flex-direction: column;
+  @include mixins.flex-column;
   min-height: 100vh;
 
   main {

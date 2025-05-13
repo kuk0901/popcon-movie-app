@@ -1,17 +1,42 @@
+@use "../../styles/abstracts/mixins";
+
 .policy_nav {
   margin: 20px;
 
   .policy_link_list {
-    display: flex;
+    @include mixins.flex-row;
 
-    .policy_link {
-      padding: 15px;
+    @include mixins.xxs-mode {
+      @include mixins.flex-wrap;
+      justify-content: center;
+    }
+
+    .policy_link_item {
       border: 1px solid #ccc;
       margin-right: -1px;
 
+      @include mixins.xxs-mode {
+        margin-right: 0px;
+        margin-bottom: -1px;
+      }
+
+      .policy_link {
+        padding: 15px;
+        display: inline-block;
+        width: 150px;
+        max-width: 180px;
+        text-align: center;
+        color: #fff;
+        transition: 0.2s;
+
+        &:hover {
+          background-color: #ccc;
+          color: #000;
+        }
+      }
+
       &:has(.active) {
         border-color: #007bff;
-
         z-index: 10;
       }
     }
