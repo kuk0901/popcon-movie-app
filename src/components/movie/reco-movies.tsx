@@ -30,7 +30,7 @@ export default async function RecoMovies() {
         추천 영화: {randomDirector.name} 감독
       </h2>
       <ul className={style.movies_list}>
-        {movieList.map((movie: MovieAndPosterDetail) => (
+        {movieList?.map((movie: MovieAndPosterDetail) => (
           <MovieItem key={movie.DOCID} movie={movie} />
         ))}
       </ul>

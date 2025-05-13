@@ -1,11 +1,11 @@
+@use "../../styles/abstracts/mixins";
+
 .section {
   position: relative;
 
   .user_info {
+    @include mixins.flex-row(center, center);
     width: 60px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 
     .user_icon {
       background-color: #e9e5e5;

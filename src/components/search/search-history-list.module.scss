@@ -32,10 +32,9 @@
     background-color: #fff;
 
     .search_item {
+      @include mixins.flex-row($align: center);
       width: 500px;
       height: 46px;
-      display: flex;
-      align-items: center;
       padding: 15px;
 
       &:hover {

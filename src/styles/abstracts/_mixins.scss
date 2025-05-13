@@ -55,3 +55,54 @@
     @content;
   }
 }
+
+// flex
+@mixin flex-row($justify: normal, $align: normal) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+@mixin flex-row-gap($justify: normal, $align: normal, $gap: 0) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+  gap: $gap;
+}
+
+@mixin flex-column($justify: normal, $align: normal) {
+  display: flex;
+  flex-direction: column;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+@mixin flex-column-gap($justify: normal, $align: normal, $gap: 0) {
+  display: flex;
+  flex-direction: column;
+  justify-content: $justify;
+  align-items: $align;
+  gap: $gap;
+}
+
+@mixin flex-wrap() {
+  flex-wrap: wrap;
+}
+
+// text
+@mixin wordBreakKeepAll {
+  word-break: keep-all;
+}
+
+// pwd
+@mixin pwd-container {
+  position: relative;
+
+  .show_pwd {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    padding: 2px;
+    cursor: pointer;
+  }
+}

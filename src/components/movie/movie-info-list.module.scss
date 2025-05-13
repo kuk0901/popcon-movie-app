@@ -1,9 +1,7 @@
 @use "../../styles/abstracts/mixins";
 
 .movie_info_list {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  @include mixins.flex-column-gap($gap: 10px);
   font-size: 17px;
   padding: 15px;
 
@@ -19,7 +17,7 @@
     &.movie_info_title {
       font-size: 20px;
       font-weight: 700;
-      word-break: keep-all;
+      @include mixins.wordBreakKeepAll;
 
       @include mixins.xs-mode {
         font-size: 18px;

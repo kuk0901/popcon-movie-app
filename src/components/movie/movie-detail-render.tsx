@@ -14,6 +14,7 @@ interface PlotType {
   plotText: string;
 }
 
+// FIXME:
 export default function MovieDetailRender({
   movie
 }: Readonly<{ movie: MovieAndPosterDetail }>) {
@@ -40,8 +41,6 @@ export default function MovieDetailRender({
       return trimmedAward;
     })
     .slice(0, 7);
-
-  console.log(awards);
 
   return (
     <section className={style.movie_section}>

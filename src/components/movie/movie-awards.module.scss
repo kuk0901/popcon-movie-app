@@ -1,3 +1,5 @@
+@use "../../styles/abstracts/mixins";
+
 .movie_award {
   margin: 10px 0 30px;
 
@@ -7,11 +9,8 @@
   }
 
   .award_list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: space-between;
-    align-items: center;
+    @include mixins.flex-row-gap(space-between, center, 10px);
+    @include mixins.flex-wrap;
 
     .award_item {
       margin-left: 10px;

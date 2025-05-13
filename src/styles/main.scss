@@ -3,10 +3,8 @@
 @use "base/reset";
 @use "components/button";
 
-// FIXME: 반응형 CSS 작성 - profile, signin, signup
 .wrapper {
-  display: flex;
-  flex-direction: column;
+  @include mixins.flex-column;
   min-height: 100vh;
 
   main {

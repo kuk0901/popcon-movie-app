@@ -4,10 +4,10 @@
   margin: 20px;
 
   .policy_link_list {
-    display: flex;
+    @include mixins.flex-row;
 
     @include mixins.xxs-mode {
-      flex-wrap: wrap;
+      @include mixins.flex-wrap;
       justify-content: center;
     }
 
