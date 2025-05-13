@@ -4,6 +4,7 @@ import "@/styles/main.scss";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 import SessionClientProvider from "@/components/session-client-provider";
+import ToastProvider from "@/components/toast/toast-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,11 +29,13 @@ export default async function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <SessionClientProvider>
-          <div className="wrapper">
-            <Header />
-            <main>{children}</main>
-            <Footer />
-          </div>
+          <ToastProvider>
+            <div className="wrapper">
+              <Header />
+              <main>{children}</main>
+              <Footer />
+            </div>
+          </ToastProvider>
         </SessionClientProvider>
       </body>
     </html>

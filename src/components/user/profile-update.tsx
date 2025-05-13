@@ -3,32 +3,31 @@
 import style from "./profile.module.scss";
 import { useActionState, useEffect, useState } from "react";
 import { updateUserAction } from "@/actions/update-user.action";
-import { useRouter } from "next/navigation";
 import { UserProfile } from "@/types/userProfile";
 import { signOut } from "next-auth/react";
+import { toast } from "react-toastify";
+import { useToastStore } from "@/stores/useToastStore";
 
 export default function ProfileUpdate({
   user
 }: Readonly<{ user: UserProfile }>) {
   const [state, formAction, isPending] = useActionState(updateUserAction, {
-    status: true
+    status: false
   });
   const [email, setEmail] = useState(user.email);
   const [userName, setUserName] = useState(user.userName);
   const [showPwd, setShowPwd] = useState(false);
-  const router = useRouter();
+  const toasts = useToastStore((state) => state.toasts["userUpdate"]);
 
   useEffect(() => {
-    if (state?.status && state?.message) {
-      console.log("state success: ", state);
-      alert("회원 정보가 저장되었습니다. 다시 로그인 해주세요.");
-      signOut();
-      router.replace("/auth/signin");
-    } else if (state && !state.status) {
-      console.log("state failed: ", state);
-      alert(state.message); // FIXME: 알림 메시지로 변경
+    if (state.status) {
+      signOut({ callbackUrl: "/auth/signin?ut=1" });
+    } else if (state.status === false && toasts?.message) {
+      toast.error(
+        "회원 정보 저장 중 서버 오류가 발생했습니다. 잠시 후 다시 시도해주세요."
+      );
     }
-  }, [state, router]);
+  }, [state]);
 
   const handleActionFrom = async (formData: FormData) => {
     if (
@@ -36,7 +35,7 @@ export default function ProfileUpdate({
       formData.get("userName") === user.userName &&
       !formData.get("pwd")
     ) {
-      console.log("변경된 내용이 없습니다."); // FIXME: 알림 메시지로 변경
+      toast.info("변경된 내용이 없습니다.");
       return;
     }
 

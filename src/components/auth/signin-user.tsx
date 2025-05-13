@@ -4,10 +4,13 @@ import { signIn } from "next-auth/react";
 import style from "./auth-user.module.scss";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
+import { useToastStore } from "@/stores/useToastStore";
 
 export default function SigninUser() {
   const [showPwd, setShowPwd] = useState(false);
   const router = useRouter();
+  const { addToast } = useToastStore();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -23,10 +26,14 @@ export default function SigninUser() {
     });
 
     if (res?.status == 200) {
+      addToast("signin", "로그인되었습니다.", "success");
       router.replace("/");
+      return;
     }
 
-    // 에러 메시지 띄움
+    toast.error(
+      "로그인 중 서버 오류가 발생했습니다. 잠시 후 다시 시도해주세요."
+    );
   };
 
   return (

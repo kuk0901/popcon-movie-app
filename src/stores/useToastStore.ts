@@ -1,13 +1,30 @@
+import { TypeOptions } from "react-toastify";
 import { create } from "zustand";
 
+export interface Toast {
+  message: string;
+  type: TypeOptions;
+}
+
 interface ToastState {
-  toast: string;
-  showToast: (toast: string) => void;
-  hideToast: () => void;
+  toasts: { [id: string]: Toast };
+  addToast: (id: string, message: string, type?: TypeOptions) => void;
+  removeToast: (id: string) => void;
 }
 
 export const useToastStore = create<ToastState>((set) => ({
-  toast: "",
-  showToast: (toast) => set({ toast: toast }),
-  hideToast: () => set({ toast: "" })
+  toasts: {},
+  addToast: (id, message, type = "default") =>
+    set((state) => ({
+      toasts: {
+        ...state.toasts,
+        [id]: { message, type }
+      }
+    })),
+  removeToast: (id) =>
+    set((state) => {
+      const newToasts = { ...state.toasts };
+      delete newToasts[id];
+      return { toasts: newToasts };
+    })
 }));
