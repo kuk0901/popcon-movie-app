@@ -1,4 +1,5 @@
 import MovieDetailRender from "@/components/movie/movie-detail-render";
+import ToastRenderer from "@/components/toast/toast-render";
 import { MovieAndPosterDetail, MovieAndPosterResult } from "@/types/movie";
 import { notFound } from "next/navigation";
 
@@ -38,5 +39,10 @@ export default async function Page({
   const { id } = await params;
   const [movieId, movieSeq] = id;
 
-  return <MovieDetail movieId={movieId} movieSeq={movieSeq} />;
+  return (
+    <>
+      <ToastRenderer ids={["favorite"]} />
+      <MovieDetail movieId={movieId} movieSeq={movieSeq} />
+    </>
+  );
 }

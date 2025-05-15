@@ -2,6 +2,7 @@
 
 import { deleteFavoriteAction } from "@/actions/delete-favorite.action";
 import { registerFavoriteAction } from "@/actions/register-favorite.action";
+import { useToastStore } from "@/stores/useToastStore";
 import { FavoriteRegisterInput } from "@/types/favoriteRegisterInput";
 import { useState, useTransition } from "react";
 
@@ -14,6 +15,7 @@ export default function FavoriteButtonClient({
 }>) {
   const [isFavorite, setIsFavorite] = useState(initialIsFavorite);
   const [isPending, startTransition] = useTransition();
+  const { addToast } = useToastStore();
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -21,14 +23,18 @@ export default function FavoriteButtonClient({
     setIsFavorite((prev) => !prev); // Optimistic UI
 
     startTransition(() => {
-      const action = isFavorite
-        ? deleteFavoriteAction({
-            user: favoriteRegisterInput.user,
-            docId: favoriteRegisterInput.docId
-          })
-        : registerFavoriteAction(favoriteRegisterInput);
-
-      action.catch(() => setIsFavorite(initialIsFavorite)); // 실패 시 최초 값으로 롤백
+      if (isFavorite) {
+        deleteFavoriteAction({
+          user: favoriteRegisterInput.user,
+          docId: favoriteRegisterInput.docId
+        })
+          .then(() => addToast("favorite", "찜이 취소되었습니다.", "success"))
+          .catch(() => setIsFavorite(initialIsFavorite));
+      } else {
+        registerFavoriteAction(favoriteRegisterInput)
+          .then(() => addToast("favorite", "찜에 추가되었습니다.", "success"))
+          .catch(() => setIsFavorite(initialIsFavorite));
+      }
     });
   };
 

@@ -3,6 +3,7 @@ import { authOptions } from "../api/auth/[...nextauth]/route";
 import { redirect } from "next/navigation";
 import Profile from "@/components/user/profile";
 import FavoriteList from "@/components/user/favorite-list";
+import ToastRenderer from "@/components/toast/toast-render";
 
 export default async function Page() {
   const session = await getServerSession(authOptions);
@@ -12,9 +13,13 @@ export default async function Page() {
   }
 
   return (
-    <section>
-      <Profile id={session.user.id} />
-      <FavoriteList user={session.user.id} />
-    </section>
+    <>
+      <ToastRenderer ids={["favorite"]} />
+
+      <section>
+        <Profile id={session.user.id} />
+        <FavoriteList user={session.user.id} />
+      </section>
+    </>
   );
 }

@@ -64,9 +64,9 @@ export default function UserInfo({ user }: Readonly<{ user: UserInfoType }>) {
             </li>
             <li className={style.nav_item}>
               <button
-                onClick={() => {
+                onClick={async () => {
                   setShowMenu(false);
-                  signOut();
+                  await signOut({ callbackUrl: "/?loggedout=1" });
                 }}
                 className={style.nav_link}
               >
