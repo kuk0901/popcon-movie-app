@@ -5,7 +5,7 @@ import Link from "next/link";
 
 import ProfileFavoriteRemoveButton from "../button/profile-favorite-remove-button";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { authOptions } from "@/lib/authOptions";
 
 export default async function FavoriteItem({
   favorite

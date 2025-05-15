@@ -1,6 +1,6 @@
 "use server";
 
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { authOptions } from "@/lib/authOptions";
 import connectDB from "@/lib/mongoose";
 import User from "@/models/User";
 import { UserUpdateSchema } from "@/schemas/UserUpdate.schema";

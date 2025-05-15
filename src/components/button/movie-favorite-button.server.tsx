@@ -3,7 +3,7 @@ import Favorite from "@/models/Favorite";
 import { getServerSession } from "next-auth";
 import FavoriteButtonClient from "./movie-favorite-button.client";
 import { FavoriteRegisterInput } from "@/types/favoriteRegisterInput";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { authOptions } from "@/lib/authOptions";
 
 export default async function MovieFavoriteButton({
   docId,
