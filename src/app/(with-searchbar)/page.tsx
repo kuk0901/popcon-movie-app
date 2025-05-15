@@ -3,6 +3,7 @@ import UpcomingMovies from "@/components/movie/upcoming-movies";
 import style from "./page.module.scss";
 import ToastRenderer from "@/components/toast/toast-render";
 import ToastOnSignout from "@/components/toast/toast-on-signout";
+import { Suspense } from "react";
 
 export default function Home() {
   return (
@@ -13,7 +14,10 @@ export default function Home() {
       </section>
 
       <ToastRenderer ids={["signin", "signout"]} />
-      <ToastOnSignout />
+
+      <Suspense fallback={null}>
+        <ToastOnSignout />
+      </Suspense>
     </>
   );
 }

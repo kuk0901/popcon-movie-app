@@ -3,6 +3,7 @@ import style from "../page.module.scss";
 import Image from "next/image";
 import ToastRenderer from "@/components/toast/toast-render";
 import ToastOnSignout from "@/components/toast/toast-on-signout";
+import { Suspense } from "react";
 
 export default function Page() {
   return (
@@ -20,7 +21,10 @@ export default function Page() {
       </section>
 
       <ToastRenderer ids={["signup", "userUpdate"]} />
-      <ToastOnSignout />
+
+      <Suspense fallback={null}>
+        <ToastOnSignout />
+      </Suspense>
     </>
   );
 }
