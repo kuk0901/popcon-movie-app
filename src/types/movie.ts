@@ -92,11 +92,13 @@ export interface MovieAndPosterDetail {
   kmdbUrl: string; // 링크 url
   releaseDate: string; // 개봉일
   posterUrl: string; // 포스터 url
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any;
 }
 
 export interface MovieAndPosterResult {
   Data: MovieAndPosterDetailResult[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any;
 }
 
