@@ -1,11 +1,11 @@
+@use "../../styles/abstracts/mixins";
+
 .section {
   position: relative;
 
   .user_info {
+    @include mixins.flex-row(center, center);
     width: 60px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 
     .user_icon {
       background-color: #e9e5e5;
@@ -28,7 +28,7 @@
       border-radius: 4px;
 
       .nav_item {
-        width: 100px;
+        width: 110px;
         border-bottom: 1px solid #000;
 
         &:last-child {
@@ -42,7 +42,7 @@
           text-align: center;
           border: none;
           background-color: transparent;
-          font-size: 15px;
+          font-size: 16px;
           cursor: pointer;
           border-radius: 4px;
           transition: 0.2s;

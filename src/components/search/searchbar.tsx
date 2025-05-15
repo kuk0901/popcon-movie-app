@@ -2,7 +2,7 @@
 
 import { useSearchParams, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import style from "./search.module.scss";
+import style from "./searchbar.module.scss";
 import SearchHistoryList from "./search-history-list";
 import { useSearchStore } from "@/stores/useSearchStore";
 

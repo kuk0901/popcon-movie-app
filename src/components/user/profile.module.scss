@@ -1,18 +1,20 @@
+@use "../../styles/abstracts/mixins";
+
 .article {
   margin: 10px;
   padding: 10px;
-  border: 1px solid;
 
   .title {
     padding: 10px;
     font-size: 24px;
     background-color: lightgray;
     color: #000;
-    margin: 0 10px;
+    margin-bottom: 20px;
   }
 
   .form {
     padding: 10px;
+    border: 1px solid;
 
     .container {
       padding: 10px;
@@ -20,11 +22,18 @@
       border: 1px solid;
       border-left: none;
       border-right: none;
-      display: flex;
-      gap: 10px;
+      @include mixins.flex-row-gap($gap: 10px);
+
+      @include mixins.sm-mode {
+        @include mixins.flex-column-gap;
+      }
 
       &:first-child {
         margin-top: 10px;
+      }
+
+      &.container_read {
+        margin-bottom: 10px;
       }
 
       .label_container {
@@ -32,6 +41,10 @@
         padding: 10px 0;
         text-align: center;
         font-weight: 700;
+
+        @include mixins.sm-mode {
+          text-align: left;
+        }
       }
 
       .input_container {
@@ -45,6 +58,26 @@
           border: none;
           width: 90%;
           outline: none;
+        }
+
+        &.pwd_container {
+          @include mixins.pwd-container;
+
+          input {
+            width: 85%;
+
+            @include mixins.xxs-mode {
+              width: 80%;
+            }
+          }
+        }
+
+        @include mixins.xs-mode {
+          width: 250px;
+        }
+
+        @include mixins.xxs-mode {
+          width: 200px;
         }
       }
     }

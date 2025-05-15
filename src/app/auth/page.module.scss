@@ -1,9 +1,42 @@
+@use "../../styles/abstracts/mixins";
+
 .section {
+  @include mixins.flex-row(center, center);
   width: 850px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   border: 1px solid;
   border-radius: 2px;
-  margin: 50px auto 20px;
+  margin: 50px auto;
+  overflow: hidden;
+
+  @include mixins.lg-mode {
+    width: 730px;
+  }
+
+  @include mixins.md-mode {
+    width: 560px;
+  }
+
+  @include mixins.sm-mode {
+    border: none;
+    width: 100%;
+    margin-bottom: 50px;
+    background-image: url("/auth.webp");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+
+  .img {
+    @include mixins.lg-mode {
+      width: 365px;
+    }
+
+    @include mixins.md-mode {
+      width: 280px;
+    }
+
+    @include mixins.sm-mode {
+      display: none;
+    }
+  }
 }

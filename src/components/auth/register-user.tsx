@@ -4,22 +4,28 @@ import { registerUserAction } from "@/actions/register-user.action";
 import { useActionState, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import style from "./auth-user.module.scss";
+import { useToastStore } from "@/stores/useToastStore";
+import { toast } from "react-toastify";
 
 export default function RegisterUser() {
   const [state, formAction, isPending] = useActionState(registerUserAction, {
-    status: true
+    status: false
   });
   const [showPwd, setShowPwd] = useState(false);
   const router = useRouter();
+  const { addToast } = useToastStore();
+  const toasts = useToastStore((state) => state.toasts["signup"]);
 
   useEffect(() => {
-    if (state?.status && state?.message) {
-      alert("회원가입이 완료되었습니다!");
+    if (state.status) {
+      addToast("signup", "회원가입되었습니다.", "success");
       router.replace("/auth/signin");
-    } else if (state && !state.status) {
-      alert(state.message);
+    } else if (state.status === false && toasts?.message) {
+      toast.error(
+        "회원가입 중 서버 오류가 발생했습니다. 잠시 후 다시 시도해주세요."
+      );
     }
-  }, [state, router]);
+  }, [state]);
 
   return (
     <div className={style.form_container}>

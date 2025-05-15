@@ -1,21 +1,28 @@
+@use "../../styles/abstracts/mixins";
+
 .footer {
+  @include mixins.flex-row(space-between, center);
   background-color: rgba(40, 44, 52, 0.9);
   color: #e9e5e5;
-  padding: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  padding: 10px 10px 20px;
+
+  @include mixins.md-mode {
+    @include mixins.flex-wrap;
+    gap: 30px;
+  }
 
   a {
     color: #e9e5e5;
+
+    &:hover {
+      color: rgb(114, 177, 241);
+    }
   }
 
   .footer_info,
   .footer_my_info,
   .footer_links {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    @include mixins.flex-column-gap($gap: 10px);
   }
 
   .footer_info {
@@ -26,9 +33,7 @@
 
   .footer_links {
     .footer_link_item {
-      display: flex;
-      align-items: center;
-      gap: 5px;
+      @include mixins.flex-row-gap($align: center, $gap: 5px);
 
       &::before {
         display: inline-block;

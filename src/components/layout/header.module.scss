@@ -1,7 +1,7 @@
+@use "../../styles/abstracts/mixins";
+
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  @include mixins.flex-row(space-between, center);
   background-color: rgba(40, 44, 52, 0.9);
   color: #e9e5e5;
   position: fixed;
@@ -12,8 +12,7 @@
 
   .logo {
     .link_home {
-      display: flex;
-      align-items: center;
+      @include mixins.flex-row($align: center);
       color: #e9e5e5;
       font-style: italic;
       transition: 0.2s;
@@ -42,8 +41,7 @@
   }
 
   .link_container {
-    display: flex;
-    gap: 10px;
+    @include mixins.flex-row-gap($gap: 10px);
     transition: 0.2s;
 
     .link_auth {

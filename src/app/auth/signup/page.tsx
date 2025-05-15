@@ -11,6 +11,7 @@ export default function Page() {
         width={400}
         height={500}
         priority
+        className={style.img}
       />
       <RegisterUser />
     </section>
