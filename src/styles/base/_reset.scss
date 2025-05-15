@@ -11,10 +11,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-y: auto;
-  background-color: #1a1919;
-  color: #fff;
+  background-color: variables.$bg-dark-color;
+  color: variables.$text-dark-color;
 
-  @media (max-width: variables.$breakpoint-md) {
+  @include mixins.md-mode {
     /* Chrome, Safari, Opera, Edge */
     &::-webkit-scrollbar {
       display: none;
@@ -27,9 +27,14 @@ body {
     -ms-overflow-style: none;
   }
 
+  @include mixins.dark-mode {
+    background-color: variables.$bg-dark-color;
+    color: variables.$text-dark-color;
+  }
+
   @include mixins.light-mode {
-    background-color: #fff;
-    color: #1a1919;
+    background-color: variables.$bg-light-color;
+    color: variables.$text-light-color;
   }
 }
 

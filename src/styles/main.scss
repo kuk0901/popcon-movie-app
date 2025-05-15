@@ -3,6 +3,8 @@
 @use "base/reset";
 @use "components/button";
 
+/// scss 파일은 default로 system-mode의 dark-mode를 기준으로 작성
+
 .wrapper {
   @include mixins.flex-column;
   min-height: 100vh;

@@ -9,10 +9,7 @@
   cursor: pointer;
   transition: 0.2s;
 
-  &:hover {
-    background-color: #ccc;
-    color: #000;
-  }
+  @include mixins.hover-default;
 
   a {
     color: inherit;

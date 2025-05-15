@@ -1,4 +1,5 @@
 @use "../../styles/abstracts/mixins";
+@use "../../styles/abstracts/variables";
 
 .footer {
   @include mixins.flex-row(space-between, center);
@@ -12,10 +13,10 @@
   }
 
   a {
-    color: #e9e5e5;
+    color: variables.$text-gray-color;
 
     &:hover {
-      color: rgb(114, 177, 241);
+      color: variables.$hover-primary-color;
     }
   }
 
@@ -40,7 +41,7 @@
         content: "";
         width: 6px;
         height: 6px;
-        background-color: #ccc;
+        background-color: variables.$hover-bg-gray-color;
         border-radius: 50%;
       }
     }

@@ -1,9 +1,10 @@
 @use "../../styles/abstracts/mixins";
 
+$herder-color: #e9e5e5;
 .header {
   @include mixins.flex-row(space-between, center);
   background-color: rgba(40, 44, 52, 0.9);
-  color: #e9e5e5;
+  color: $herder-color;
   position: fixed;
   top: 0;
   width: 100vw;
@@ -13,14 +14,14 @@
   .logo {
     .link_home {
       @include mixins.flex-row($align: center);
-      color: #e9e5e5;
+      color: $herder-color;
       font-style: italic;
       transition: 0.2s;
       padding: 5px;
 
       &:hover {
-        color: #e9e5e5;
-        box-shadow: 3px 3px 4px #e9e5e5;
+        color: $herder-color;
+        box-shadow: 3px 3px 4px $herder-color;
       }
 
       .logo_img {
@@ -45,11 +46,11 @@
     transition: 0.2s;
 
     .link_auth {
-      color: #e9e5e5;
+      color: $herder-color;
       padding: 5px;
 
       &:hover {
-        background-color: #e9e5e5;
+        background-color: $herder-color;
         color: #282c34;
         border-radius: 4px;
       }

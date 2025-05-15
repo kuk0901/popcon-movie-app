@@ -1,8 +1,13 @@
 @use "../../styles/abstracts/mixins";
+@use "../../styles/abstracts/variables";
 
 .movies {
-  border-top: 1px solid #ccc;
+  border-top: 1px solid variables.$border-gray-color;
   padding: 10px;
+
+  @include mixins.light-mode {
+    border-color: variables.$border-dark-color;
+  }
 
   .movies_title {
     padding: 10px 10px 0;
