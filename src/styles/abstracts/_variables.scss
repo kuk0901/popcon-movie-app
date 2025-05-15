@@ -1,7 +1,26 @@
-// * breakpoint(max-width)
+/// * breakpoint(max-width)
 $breakpoint-xl: 1199px; // 1200px 미만 -> 초대형 화면 (대형 데스크탑)
 $breakpoint-lg: 991px; // 992px 미만 -> 큰 화면 (데스크탑)
 $breakpoint-md: 767px; // 768px 미만 -> 중간 화면 (태블릿)
 $breakpoint-sm: 575px; // 576px 미만 -> 작은 화면 (모바일)
 $breakpoint-xs: 414px; // 414px 미만 -> 일반 스마트폰
 $breakpoint-xxs: 360px; // 360px 미만 -> 소형 스마트폰
+
+/// * color
+$bg-dark-color: #1a1919;
+$bg-light-color: #f2ebeb;
+$bg-gray-color: lightgray;
+
+$text-dark-color: #fff;
+$text-light-color: #1a1919;
+$text-gray-color: #e9e5e5;
+
+$border-gray-color: #ccc;
+$border-dark-color: #222121;
+$border-search-history-color: rgb(179, 168, 168);
+$border-favorite-color: lightblue;
+
+$hover-bg-gray-color: #ccc;
+$hover-search-item-color: #e6e2e2;
+$hover-search-remove-btn-bg-color: #c7c4c4;
+$hover-primary-color: rgb(114, 177, 241);

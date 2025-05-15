@@ -1,5 +1,6 @@
 @use "../abstracts/mixins";
 
+/// 기본 btn-container와 btn 스타일
 .btn_container {
   margin: 30px 10px;
   @include mixins.flex-row(center, center);
@@ -37,6 +38,7 @@
   }
 }
 
+/// profile 페이지에서만 사용
 .profile_favorite {
   .btn_container {
     margin: 10px;

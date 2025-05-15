@@ -55,6 +55,8 @@ const Searchbar = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [showSearchTerms]);
 
+  console.log(showSearchTerms);
+
   return (
     <article className={style.article} ref={articleRef}>
       <div className={style.container}>
@@ -65,7 +67,7 @@ const Searchbar = () => {
           onKeyDown={onKeyDown}
           placeholder="영화 제목을 입력하세요"
           className={`${style.movie} ${
-            showSearchTerms ? style.border_none : style.border
+            showSearchTerms ? style.border : style.border_none
           }`}
           onClick={() => setShowSearchTerms(true)}
           autoComplete="off"

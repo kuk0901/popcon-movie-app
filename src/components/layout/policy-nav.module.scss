@@ -1,4 +1,5 @@
 @use "../../styles/abstracts/mixins";
+@use "../../styles/abstracts/variables";
 
 .policy_nav {
   margin: 20px;
@@ -12,7 +13,7 @@
     }
 
     .policy_link_item {
-      border: 1px solid #ccc;
+      border: 1px solid variables.$border-gray-color;
       margin-right: -1px;
 
       @include mixins.xxs-mode {
@@ -26,12 +27,12 @@
         width: 150px;
         max-width: 180px;
         text-align: center;
-        color: #fff;
+        color: variables.$text-dark-color;
         transition: 0.2s;
 
         &:hover {
           background-color: #ccc;
-          color: #000;
+          color: variables.$text-light-color;
         }
       }
 

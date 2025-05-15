@@ -1,4 +1,5 @@
 @use "../../styles/abstracts/mixins";
+@use "../../styles/abstracts/variables";
 
 .article {
   margin: 10px;
@@ -7,8 +8,8 @@
   .title {
     padding: 10px;
     font-size: 24px;
-    background-color: lightgray;
-    color: #000;
+    background-color: variables.$bg-gray-color;
+    color: variables.$text-light-color;
     margin-bottom: 20px;
   }
 
@@ -50,11 +51,11 @@
       .input_container {
         width: 300px;
         padding: 10px;
-        background-color: #fff;
+        background-color: variables.$bg-light-color;
         border-radius: 2px;
 
         input {
-          background-color: #fff;
+          background-color: variables.$bg-light-color;
           border: none;
           width: 90%;
           outline: none;
