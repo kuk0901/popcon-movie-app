@@ -1,6 +1,7 @@
 @use "../../styles/abstracts/mixins";
 @use "../../styles/abstracts/variables";
 
+/// default skeleton
 .skeleton {
   margin: 0 auto;
   border-radius: 10px;
@@ -41,6 +42,7 @@
   }
 }
 
+/// reco, upcoming movie skeleton
 .movies_skeleton {
   border-top: 1px solid variables.$border-gray-color;
   padding: 10px;
@@ -59,10 +61,12 @@
   }
 }
 
+/// search-result skeleton
 .search_result_list {
   margin: 50px auto 30px;
 }
 
+/// movie-detail skeleton
 .movie_detail {
   padding: 10px;
 
@@ -139,6 +143,32 @@
 
   .text_skeleton {
     height: 300px;
+  }
+}
+
+/// profile skeleton
+.profile {
+  margin: 30px 0 50px;
+  padding: 10px;
+
+  .title_skeleton {
+    margin: 10px 10px 20px;
+  }
+
+  .profile_list {
+    margin-bottom: 50px;
+
+    .profile_item {
+      .text_skeleton {
+        margin: 10px 10px 0;
+        height: 40px;
+      }
+    }
+  }
+
+  .movies_skeleton {
+    border: none;
+    padding: 0;
   }
 }
 
