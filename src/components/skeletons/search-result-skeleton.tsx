@@ -6,7 +6,7 @@ export default function SearchResultSkeleton() {
   return (
     <ul className={style.search_result_list}>
       {Array.from({ length: 5 }).map((_, idx) => (
-        <li key={idx} className={style.search_result_item}>
+        <li key={idx} className={style.movie_item}>
           <ImageSkeleton />
           <TextSkeleton />
         </li>

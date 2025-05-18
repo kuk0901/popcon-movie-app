@@ -1,6 +1,7 @@
 import SearchResult from "@/components/search/search-result";
 import SearchResultSkeleton from "@/components/skeletons/search-result-skeleton";
 import { Suspense } from "react";
+import style from "../page.module.scss";
 
 const Page = async ({
   searchParams
@@ -10,9 +11,11 @@ const Page = async ({
   const { movie } = await searchParams;
 
   return (
-    <Suspense key={movie ?? ""} fallback={<SearchResultSkeleton />}>
-      <SearchResult movie={movie ?? ""} />
-    </Suspense>
+    <section className={style.section}>
+      <Suspense key={movie ?? ""} fallback={<SearchResultSkeleton />}>
+        <SearchResult movie={movie ?? ""} />
+      </Suspense>
+    </section>
   );
 };
 

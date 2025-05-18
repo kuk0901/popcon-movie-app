@@ -1,14 +1,15 @@
 @use "../../styles/abstracts/mixins";
+@use "../../styles/abstracts/variables";
 
+.movie_list,
 .search_result_list {
   @include mixins.flex-row-gap(center, center, 20px);
   @include mixins.flex-wrap;
-  margin: 50px auto 0;
 
-  .search_result_item {
+  .movie_item {
     @include mixins.flex-column-gap($gap: 10px);
     width: 250px;
-    height: 450px;
+    height: 390px;
     border-radius: 4px;
 
     .text_skeleton {
@@ -16,6 +17,29 @@
       height: 75px;
     }
   }
+}
+
+.movies_skeleton {
+  border-top: 1px solid variables.$border-gray-color;
+  padding: 10px;
+
+  @include mixins.light-mode {
+    border-color: variables.$border-dark-color;
+  }
+
+  .title_skeleton {
+    margin: 10px 10px 0;
+    height: 50px;
+  }
+
+  .movie_list {
+    gap: 30px;
+    margin-top: 20px;
+  }
+}
+
+.search_result_list {
+  margin: 50px auto 30px;
 }
 
 .skeleton {
