@@ -55,8 +55,6 @@ const Searchbar = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [showSearchTerms]);
 
-  console.log(showSearchTerms);
-
   return (
     <article className={style.article} ref={articleRef}>
       <div className={style.container}>

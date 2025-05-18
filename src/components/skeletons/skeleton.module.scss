@@ -1,0 +1,41 @@
+@use "../../styles/abstracts/mixins";
+
+.search_result_list {
+  @include mixins.flex-row-gap(center, center, 20px);
+  @include mixins.flex-wrap;
+  margin: 50px auto 0;
+
+  .search_result_item {
+    @include mixins.flex-column-gap($gap: 10px);
+    width: 250px;
+    height: 450px;
+    border-radius: 4px;
+
+    .text_skeleton {
+      width: 230px;
+      height: 75px;
+    }
+  }
+}
+
+.skeleton {
+  margin: 0 auto;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #222 25%, #333 50%, #222 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+
+  &.image_skeleton {
+    height: 300px;
+    width: 230px;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -100% 0;
+  }
+  100% {
+    background-position: 100% 0;
+  }
+}

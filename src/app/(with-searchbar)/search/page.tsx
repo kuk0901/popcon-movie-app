@@ -1,4 +1,5 @@
 import SearchResult from "@/components/search/search-result";
+import SearchResultSkeleton from "@/components/skeletons/search-result-skeleton";
 import { Suspense } from "react";
 
 const Page = async ({
@@ -7,9 +8,9 @@ const Page = async ({
   searchParams: Promise<{ movie?: string }>;
 }>) => {
   const { movie } = await searchParams;
-  // api 호출
+
   return (
-    <Suspense key={movie ?? ""} fallback={<div>...Loading</div>}>
+    <Suspense key={movie ?? ""} fallback={<SearchResultSkeleton />}>
       <SearchResult movie={movie ?? ""} />
     </Suspense>
   );

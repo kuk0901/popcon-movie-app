@@ -1,7 +1,7 @@
 import { MovieAndPosterDetail, MovieAndPosterResult } from "@/types/movie";
 
 import style from "./search-result.module.scss";
-import MoviePosterSimpleItem from "../movie/movie-item";
+import MovieItem from "../movie/movie-item";
 
 const SearchResult = async ({ movie }: Readonly<{ movie: string }>) => {
   const res = await fetch(
@@ -28,7 +28,7 @@ const SearchResult = async ({ movie }: Readonly<{ movie: string }>) => {
   return (
     <ul className={style.list}>
       {movieList.map((movie: MovieAndPosterDetail) => (
-        <MoviePosterSimpleItem key={movie.DOCID} movie={movie} />
+        <MovieItem key={movie.DOCID} movie={movie} />
       ))}
     </ul>
   );
