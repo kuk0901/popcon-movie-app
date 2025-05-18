@@ -4,13 +4,19 @@ import style from "./page.module.scss";
 import ToastRenderer from "@/components/toast/toast-render";
 import ToastOnSignout from "@/components/toast/toast-on-signout";
 import { Suspense } from "react";
+import MovieListSkeleton from "@/components/skeletons/movie-list-skeleton";
 
 export default function Home() {
   return (
     <>
       <section className={style.section}>
-        <RecoMovies />
-        <UpcomingMovies />
+        <Suspense fallback={<MovieListSkeleton />}>
+          <RecoMovies />
+        </Suspense>
+
+        <Suspense fallback={<MovieListSkeleton />}>
+          <UpcomingMovies />
+        </Suspense>
       </section>
 
       <ToastRenderer ids={["signin", "signout"]} />

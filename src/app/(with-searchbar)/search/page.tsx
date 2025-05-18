@@ -1,5 +1,7 @@
 import SearchResult from "@/components/search/search-result";
+import SearchResultSkeleton from "@/components/skeletons/search-result-skeleton";
 import { Suspense } from "react";
+import style from "../page.module.scss";
 
 const Page = async ({
   searchParams
@@ -7,11 +9,13 @@ const Page = async ({
   searchParams: Promise<{ movie?: string }>;
 }>) => {
   const { movie } = await searchParams;
-  // api 호출
+
   return (
-    <Suspense key={movie ?? ""} fallback={<div>...Loading</div>}>
-      <SearchResult movie={movie ?? ""} />
-    </Suspense>
+    <section className={style.section}>
+      <Suspense key={movie ?? ""} fallback={<SearchResultSkeleton />}>
+        <SearchResult movie={movie ?? ""} />
+      </Suspense>
+    </section>
   );
 };
 

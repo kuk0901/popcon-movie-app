@@ -8,6 +8,7 @@ import MovieInfoList from "./movie-info-list";
 import BackRouteButton from "../button/back-route-button";
 import MovieFavoriteButton from "../button/movie-favorite-button.server";
 import MovieAwards from "./movie-awards";
+import posterStyle from "./movie-poster.module.scss";
 
 interface PlotType {
   plotLang: string;
@@ -48,9 +49,7 @@ export default function MovieDetailRender({
           <MoviePoster
             posterUrl={posterUrl[0]}
             movieTitle={movieTitle}
-            width={350}
-            height={420}
-            className="detail_poster"
+            className={posterStyle.detail_poster}
           />
         </div>
 

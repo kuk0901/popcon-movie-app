@@ -1,15 +1,23 @@
 @use "../../styles/abstracts/mixins";
 
-.movie_poster_img {
+.poster_wrapper {
+  position: relative;
+  width: 230px;
+  height: 300px;
+  margin-bottom: 5px;
+
   &.detail_poster {
+    width: 350px;
+    height: 450px;
+
     @include mixins.xs-mode {
       width: 280px;
-      height: 310px;
+      height: 350px;
     }
 
     @include mixins.xxs-mode {
       width: 220px;
-      height: 250px;
+      height: 320px;
     }
   }
 }
