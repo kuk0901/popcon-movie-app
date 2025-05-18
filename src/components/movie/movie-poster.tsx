@@ -4,8 +4,6 @@ import style from "./movie-poster.module.scss";
 export default function MoviePoster({
   posterUrl,
   movieTitle,
-  height = 300,
-  width = 230,
   className
 }: Readonly<{
   posterUrl: string;
@@ -15,24 +13,22 @@ export default function MoviePoster({
   className?: string;
 }>) {
   return (
-    <>
+    <div className={`${style.poster_wrapper} ${className}`}>
       {posterUrl !== "" ? (
         <Image
           src={posterUrl}
           alt={`${movieTitle}의 포스터 이미지`}
-          width={width}
-          height={height}
-          className={`${style.movie_poster_img} ${className}`}
+          fill
+          className={`${style.movie_poster_img}`}
         />
       ) : (
         <Image
           src="/samplePoster.png"
           alt={`${movieTitle}의 포스터 이미지`}
-          width={width}
-          height={height}
-          className={`${style.movie_poster_img} ${className}`}
+          fill
+          className={`${style.movie_poster_img}`}
         />
       )}
-    </>
+    </div>
   );
 }

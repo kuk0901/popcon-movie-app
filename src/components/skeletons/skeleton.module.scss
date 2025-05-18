@@ -1,8 +1,30 @@
 @use "../../styles/abstracts/mixins";
 @use "../../styles/abstracts/variables";
 
+.skeleton {
+  margin: 0 auto;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #222 25%, #333 50%, #222 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+
+  &.image_skeleton {
+    height: 300px;
+    width: 230px;
+  }
+
+  &.title_skeleton {
+    height: 50px;
+  }
+
+  &.text_skeleton {
+    height: 30px;
+  }
+}
+
 .movie_list,
-.search_result_list {
+.search_result_list,
+.movie_info {
   @include mixins.flex-row-gap(center, center, 20px);
   @include mixins.flex-wrap;
 
@@ -29,7 +51,6 @@
 
   .title_skeleton {
     margin: 10px 10px 0;
-    height: 50px;
   }
 
   .movie_list {
@@ -42,16 +63,82 @@
   margin: 50px auto 30px;
 }
 
-.skeleton {
-  margin: 0 auto;
-  border-radius: 10px;
-  background: linear-gradient(90deg, #222 25%, #333 50%, #222 75%);
-  background-size: 200% 100%;
-  animation: shimmer 1.5s infinite linear;
+.movie_detail {
+  padding: 10px;
 
-  &.image_skeleton {
+  .movie_info {
+    justify-content: space-between;
+    margin-bottom: 20px;
+
+    @include mixins.md-mode {
+      flex-wrap: nowrap;
+      flex-direction: column;
+    }
+
+    .movie_info_list {
+      .text_skeleton {
+        width: 65vw;
+        height: 420px;
+        margin: 0;
+
+        @include mixins.lg-mode {
+          width: 55vw;
+        }
+
+        @include mixins.md-mode {
+          width: 97vw;
+          height: 220px;
+        }
+
+        @include mixins.sm-mode {
+          width: 96vw;
+        }
+
+        @include mixins.xs-mode {
+          width: 95vw;
+        }
+
+        @include mixins.xxs-mode {
+          width: 94vw;
+        }
+      }
+    }
+
+    .image_skeleton {
+      margin: 0;
+      width: 30vw;
+      height: 420px;
+
+      @include mixins.lg-mode {
+        width: 40vw;
+      }
+
+      @include mixins.md-mode {
+        width: 350px;
+        height: 420px;
+      }
+
+      @include mixins.xs-mode {
+        width: 280px;
+        height: 350px;
+      }
+
+      @include mixins.xxs-mode {
+        width: 220px;
+        height: 320px;
+      }
+    }
+  }
+
+  .movie_award {
+    margin-bottom: 30px;
+    .text_skeleton {
+      height: 100px;
+    }
+  }
+
+  .text_skeleton {
     height: 300px;
-    width: 230px;
   }
 }
 

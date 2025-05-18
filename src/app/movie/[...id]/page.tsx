@@ -1,7 +1,9 @@
 import MovieDetailRender from "@/components/movie/movie-detail-render";
+import MovieDetailSkeleton from "@/components/skeletons/movie-detail-skeleton";
 import ToastRenderer from "@/components/toast/toast-render";
 import { MovieAndPosterDetail, MovieAndPosterResult } from "@/types/movie";
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 
 async function MovieDetail({
   movieId,
@@ -42,7 +44,10 @@ export default async function Page({
   return (
     <>
       <ToastRenderer ids={["favorite"]} />
-      <MovieDetail movieId={movieId} movieSeq={movieSeq} />
+
+      <Suspense fallback={<MovieDetailSkeleton />}>
+        <MovieDetail movieId={movieId} movieSeq={movieSeq} />
+      </Suspense>
     </>
   );
 }
