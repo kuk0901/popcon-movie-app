@@ -4,11 +4,13 @@ import style from "./reco-upcoming-movies.module.scss";
 import recoDirector from "@/data/recoDirector.json";
 
 export default async function RecoMovies() {
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+
   const randomDirector =
     recoDirector[Math.floor(Math.random() * recoDirector.length)];
 
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_MOVIE_KMDB_API_SERVER}&director=${randomDirector.name}&sort=prodYear,1&listCount=10&ServiceKey=${process.env.NEXT_PUBLIC_MOVIE_KMDB_API_KEY}`,
+    `${baseUrl}/api/kmdb-proxy?director=${randomDirector.name}&sort=prodYear,1&listCount=10`,
     {
       next: {
         revalidate: 100

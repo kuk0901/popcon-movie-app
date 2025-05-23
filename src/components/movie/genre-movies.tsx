@@ -9,10 +9,11 @@ import style from "./reco-upcoming-movies.module.scss";
 export default function GenreMovies() {
   const [movieList, setMovieList] = useState<MovieAndPosterDetail[]>([]);
   const [genre, setGenre] = useState<string>("");
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
   const getGenreMovies = async (genre = "판타지") => {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_MOVIE_KMDB_API_SERVER}&genre=${genre}&sort=prodYear,1&listCount=10&ServiceKey=${process.env.NEXT_PUBLIC_MOVIE_KMDB_API_KEY}`,
+      `${baseUrl}/api/kmdb-proxy?genre=${genre}&sort=prodYear,1&listCount=10`,
       {
         cache: "force-cache"
       }
