@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import RecoMovies from "@/components/movie/reco-movies";
 import UpcomingMovies from "@/components/movie/upcoming-movies";
 import style from "./page.module.scss";
@@ -7,7 +9,7 @@ import { Suspense } from "react";
 import MovieListSkeleton from "@/components/skeletons/movie-list-skeleton";
 import GenreMovies from "@/components/movie/genre-movies";
 
-export default function Home() {
+export default async function Home() {
   return (
     <>
       <section className={style.section}>

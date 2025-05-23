@@ -2,6 +2,9 @@ import { NextRequest } from "next/server";
 
 export async function GET(req: NextRequest) {
   try {
+    console.log("API_SERVER:", process.env.NEXT_PUBLIC_MOVIE_KMDB_API_SERVER);
+    console.log("API_KEY:", process.env.NEXT_PUBLIC_MOVIE_KMDB_API_KEY);
+
     const clientUrl = new URL(req.url, "http://localhost:3000");
     const apiUrl = new URL(
       process.env.NEXT_PUBLIC_MOVIE_KMDB_API_SERVER as string
@@ -16,7 +19,18 @@ export async function GET(req: NextRequest) {
       process.env.NEXT_PUBLIC_MOVIE_KMDB_API_KEY as string
     );
 
-    const res = await fetch(apiUrl.toString());
+    console.log("Proxy fetch URL:", apiUrl.toString());
+
+    const res = await fetch(apiUrl.toString(), {
+      headers: {
+        "Accept-Charset": "UTF-8"
+      }
+    });
+    console.log("Proxy fetch status:", res.status);
+
+    if (!res.ok) {
+      throw new Error(`External API error: ${res.status} ${res.statusText}`);
+    }
     const data = await res.json();
     return Response.json(data);
   } catch (error) {
