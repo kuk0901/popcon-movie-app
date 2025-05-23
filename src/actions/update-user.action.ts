@@ -13,12 +13,9 @@ export async function updateUserAction(
   _: ActionResponse | undefined,
   formData: FormData
 ): Promise<ActionResponse> {
-  console.log("서버 액션 에러 확인 중 1");
   const session = await getServerSession(authOptions);
   const userId = session?.user?.id;
   if (!userId) throw new Error("Not authenticated");
-
-  console.log("formData: ", formData);
 
   // FormData 파싱
   const email = formData.get("email")?.toString();

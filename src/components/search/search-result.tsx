@@ -2,6 +2,8 @@ import { MovieAndPosterDetail, MovieAndPosterResult } from "@/types/movie";
 
 import style from "./search-result.module.scss";
 import MovieItem from "../movie/movie-item";
+import { extractMostFrequentGenre } from "@/utils/format/extractMostFrequentGenre";
+import GenreStorageSaver from "../genre-storage-saver";
 
 const SearchResult = async ({ movie }: Readonly<{ movie: string }>) => {
   const res = await fetch(
@@ -18,19 +20,24 @@ const SearchResult = async ({ movie }: Readonly<{ movie: string }>) => {
 
   const data: MovieAndPosterResult = await res.json();
   const { Data } = data;
-
   const movieList: MovieAndPosterDetail[] = Data[0].Result;
 
   if (!movieList || movieList.length === 0) {
     return <div>검색 결과가 없습니다.</div>;
   }
 
+  const genre = extractMostFrequentGenre(movieList);
+
   return (
-    <ul className={style.list}>
-      {movieList.map((movie: MovieAndPosterDetail) => (
-        <MovieItem key={movie.DOCID} movie={movie} />
-      ))}
-    </ul>
+    <>
+      <ul className={style.list}>
+        {movieList.map((movie: MovieAndPosterDetail) => (
+          <MovieItem key={movie.DOCID} movie={movie} />
+        ))}
+      </ul>
+
+      <GenreStorageSaver genre={genre} />
+    </>
   );
 };
 
