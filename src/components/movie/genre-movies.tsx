@@ -9,7 +9,7 @@ import style from "./reco-upcoming-movies.module.scss";
 export default function GenreMovies() {
   const [movieList, setMovieList] = useState<MovieAndPosterDetail[]>([]);
   const [genre, setGenre] = useState<string>("");
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL as string;
 
   const getGenreMovies = async (genre = "판타지") => {
     const res = await fetch(

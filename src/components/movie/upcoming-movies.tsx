@@ -8,7 +8,7 @@ export default async function UpcomingMovies() {
   const month = String(dateObj.getMonth() + 1).padStart(2, "0");
   const date = String(dateObj.getDate()).padStart(2, "0");
   const today = `${year}${month}${date}`;
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL as string;
 
   const res = await fetch(
     `${baseUrl}/api/kmdb-proxy?nation=대한민국&releaseDts=${today}&listCount=10`,

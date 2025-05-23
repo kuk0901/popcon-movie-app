@@ -4,7 +4,7 @@ import style from "./reco-upcoming-movies.module.scss";
 import recoDirector from "@/data/recoDirector.json";
 
 export default async function RecoMovies() {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL as string;
 
   const randomDirector =
     recoDirector[Math.floor(Math.random() * recoDirector.length)];
