@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import MovieDetailRender from "@/components/movie/movie-detail-render";
 import MovieDetailSkeleton from "@/components/skeletons/movie-detail-skeleton";
 import ToastRenderer from "@/components/toast/toast-render";
@@ -9,8 +11,10 @@ async function MovieDetail({
   movieId,
   movieSeq
 }: Readonly<{ movieId: string; movieSeq: string }>) {
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL as string;
+
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_MOVIE_KMDB_API_SERVER}&detail=Y&movieId=${movieId}&movieSeq=${movieSeq}&ServiceKey=${process.env.NEXT_PUBLIC_MOVIE_KMDB_API_KEY}`,
+    `${baseUrl}/api/kmdb-proxy?detail=Y&movieId=${movieId}&movieSeq=${movieSeq}`,
     {
       cache: "force-cache"
     }

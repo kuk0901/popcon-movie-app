@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import SearchResult from "@/components/search/search-result";
 import SearchResultSkeleton from "@/components/skeletons/search-result-skeleton";
 import { Suspense } from "react";

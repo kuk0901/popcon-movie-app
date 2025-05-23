@@ -1,17 +1,15 @@
 import { MovieAndPosterDetail, MovieAndPosterResult } from "@/types/movie";
-
 import style from "./search-result.module.scss";
 import MovieItem from "../movie/movie-item";
 import { extractMostFrequentGenre } from "@/utils/format/extractMostFrequentGenre";
 import GenreStorageSaver from "../genre-storage-saver";
 
 const SearchResult = async ({ movie }: Readonly<{ movie: string }>) => {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_MOVIE_KMDB_API_SERVER}&title=${movie}&ServiceKey=${process.env.NEXT_PUBLIC_MOVIE_KMDB_API_KEY}`,
-    {
-      cache: "force-cache"
-    }
-  );
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL as string;
+
+  const res = await fetch(`${baseUrl}/api/kmdb-proxy?title=${movie}`, {
+    cache: "force-cache"
+  });
 
   if (!res.ok) {
     console.error(`API 요청 실패: ${res.status}`);
